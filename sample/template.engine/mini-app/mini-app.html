@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>mini-app</title>
+<script src="../../../libs/jquery-1.11.1.js" type="text/javascript"></script>
+<script
+	src="../../../dist/1.0.0-beta/de.titus.jquery.plugins.min-1.0.0-beta.js"
+	type="text/javascript"></script>
+<style type="text/css">
+html, body {
+	font-size: 10pt;
+}
+
+#main {
+	width: 50em;
+}
+
+#input {
+	width: 100%;
+}
+
+#normal {
+	width: 50%;
+	float: left;
+}
+
+#normal div {
+	padding: 0.5em;
+}
+
+#templated {
+	width: 50%;
+	float: right;
+}
+
+#templated div {
+	padding: 0.5em;
+}
+
+#footer {
+	width: 100%
+}
+
+.firstname {
+	
+}
+
+.lastname {
+	margin-left: 1em;
+}
+.gender {
+	margin-left: 1em;
+}
+</style>
+
+<script type="text/javascript">
+	/*<!--*/
+    var list = new Array();
+    
+    function addNewData() {
+	    var data = {};	    
+	    data.firstname = $("#firstname").val();
+	    data.lastname = $("#lastname").val();
+	    data.gender = $("#gender").val();
+	    data.showGender = $('#hideGender').is(':checked') ? false : true;
+	    
+	    list.push(data);
+	    window.setTimeout(function() {
+		    renderNormal(list);
+	    }, 100);
+	    window.setTimeout(function() {
+		    renderTemplate(list);
+	    }, 100);
+    }
+
+    function renderNormal(aList) {
+	    
+	    var container = $("#normal");
+	    container.empty();
+	    
+	    for (var i = 0; i < aList.length; i++) {
+		    var data = aList[i];
+		    var line = '<div><span class="firstname">' + data.firstname + '</span><span class="lastname">' + data.lastname + '</span>';
+		    if(data.showGender){
+		    	line = line + '<span class="gender">' + data.gender + '</span>';
+		    }
+		    line = line + '</div>';
+		    var newContent = $(line);
+		    container.append(newContent);
+	    }
+    }
+
+    function renderTemplate(aList) {
+	    $("#templated").doTemplating({'data' : aList });
+    }
+    /*-->*/
+</script>
+</head>
+<body>
+	<div id="main">
+		<div id="input">
+			<div>
+				<span>Firstname:</span><input id="firstname" type="text" value="" />
+			</div>
+			<div>
+				<span>Lastname:</span><input id="lastname" type="text" value="" />
+			</div>
+			<div>
+				<span>gender:</span>
+				<select id="gender" >
+					<option value="male">male</option>
+					<option value="female">female</option>
+				</select>
+			</div>
+			<div>
+				<span></span><input id="hideGender" type="checkbox">don't show my gender</input>
+			</div>
+			<div>
+				<span></span><input type="button" value="add" onclick="addNewData()" />
+			</div>
+		</div>
+		<div id="normal"></div>
+		<div id="templated" tpl-template-remote="template.html"></div>
+		<div id="footer"></div>
+	</div>
+
+</body>
+</html>

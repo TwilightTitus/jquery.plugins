@@ -1,0 +1,30 @@
+<div>
+	<script type="text/javascript">
+	/*<!--*/
+	function doExecute(aDomPath, aButton, aMessage){
+		if(aMessage != undefined){
+			alert(aMessage);
+		}
+		$.each($(aDomPath), function(aIndex, aItem){
+			$(aItem).doTemplating();
+		});
+		$(aButton).hide();
+	}
+	/*-->*/
+	</script>
+
+	<div class="container">
+		<div>fix defined - auto execution</div>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="remote" tpl-template-remote="template.remote.html" tpl-template-data-remote="remote.json"></div>
+	</div>
+	<div class="container">
+		<div>fix defined</div>
+		<button onclick="doExecute('.remoteFix', this);">execute</button>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="remoteFix" tpl-template-remote="template.remote.html" tpl-template-data-remote="remote.json" tpl-template-execute="false"></div>
+	</div>
+	<div class="container">
+		<div>dynamic defined </div>
+		<button onclick="doExecute('.remoteDynamic', this, 'remoteJson = ${templateUrl}, remoteJson = ${remoteJson}');">execute</button>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="remoteDynamic" tpl-template-remote="${templateUrl}" tpl-template-data-remote="${remoteJson}" tpl-template-execute="false"></div>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<div tpl-choose="">
+	<div tpl-if="${person.visible &amp;&amp; person.gender == 'female'}">
+		<span >Geschlecht: ${person.gender}</span>
+		<span>Nachname: ${person.lastname}</span>
+		<span>Vorname: ${person.firstname}</span>
+		<span >Never ask for age!</span>
+	</div>
+	<div tpl-if="${!person.visible &amp;&amp; person.gender == 'female'}">
+		<span >Geschlecht: hidden</span>
+		<span>Nachname: ${person.lastname}</span>
+		<span>Vorname: ${person.firstname}</span>
+		<span>Never ask for age!</span>
+	</div>
+	<div tpl-else="">
+		<span >Geschlecht: ${person.gender}</span>
+		<span>Nachname: ${person.lastname}</span>
+		<span>Vorname: ${person.firstname}</span>
+	</div>
+</div>
