@@ -24,13 +24,13 @@
 	"licenses": [
 		{
 			"type": "MIT",
-			"url": "https://github.com/TwilightTitus/jquery.plugins/blob/master/LICENSE"
+			"url": "https://github.com/TwilightTitus/jquery.plugins/blob/1.0.0-beta/LICENSE"
 		}
 	],
 	"bugs": "https://github.com/TwilightTitus/jquery.plugins/issues",
 	"homepage": "",
-	"docs": "https://github.com/TwilightTitus/jquery.plugins/blob/master/README.md",
-	"download": "https://github.com/TwilightTitus/jquery.plugins/archive/master.zip",
+	"docs": "https://github.com/TwilightTitus/jquery.plugins/blob/1.0.0-beta/README.md",
+	"download": "https://github.com/TwilightTitus/jquery.plugins/archive/1.0.0-beta.zip",
 	"dependencies": {
 		"jquery": ">=1.11"
 	}
