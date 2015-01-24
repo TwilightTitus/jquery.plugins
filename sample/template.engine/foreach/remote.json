@@ -1,6 +1,0 @@
-{"persons" : [
-{"gender" : "male", "lastname" : "mustermann", "firstname" : "alexander","visible":false},
-{"gender" : "male", "lastname" : "mustermann", "firstname" : "alexander","visible":true},
-{"gender" : "female", "lastname" : "mustermann", "firstname" : "alexandra","visible":false},
-{"gender" : "female", "lastname" : "mustermann", "firstname" : "alexandra","visible":true}
-]}

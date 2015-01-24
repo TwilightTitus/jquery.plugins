@@ -1,8 +1,0 @@
-[{"title":"Basic Sample", "url":"./simple/simple.html", "description":"This is a one simple case of using this templating."},
-{"title":"Basic if", "url":"./if/if.html", "description":"This is a short sample for how to use if."},
-{"title":"Basic choose", "url":"./choose/choose.html", "description":"This is a short sample for how to use choose."},
-{"title":"Basic foreach", "url":"./foreach/foreach.html", "description":"This is a short sample for how to use foreach."},
-{"title":"template recursion", "url":"./template-recursion/template-recursion.html", "description":"This a sample how to use templates at templates to make a template recursion. With this feature you are able to make a high dynamic application."},
-{"title":"mini application", "url":"./mini-app/mini-app.html", "description":"This is a little sample application to show the differents between normal application and templated applications. Templating decrese the count of code and make an application more updateble."}
-]
-
