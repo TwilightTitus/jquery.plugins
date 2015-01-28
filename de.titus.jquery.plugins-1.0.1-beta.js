@@ -735,12 +735,14 @@ de.titus.core.Namespace.create("de.titus.TemplateEngine", function() {
 	 */
 	de.titus.TemplateEngine.prototype.evalText = function(aText, aElement, theData, theOptions) {
 		var content = aText;
-		while (de.titus.TemplateEngine.GLOBAL_VARIABLEN_REGEX.test(content)) {
+		var runValue = aText;
+		while (de.titus.TemplateEngine.GLOBAL_VARIABLEN_REGEX.test(runValue)) {
 			var match = de.titus.TemplateEngine.GLOBAL_VARIABLEN_REGEX.exec(content);
 			var result = this.evalVariable(match[1], aElement, theData, theOptions);
 			if (result != undefined) {
 				content = content.replace(match[0], result);
 			}
+			runValue.replace(match[0], "");
 		}
 		
 		return content;

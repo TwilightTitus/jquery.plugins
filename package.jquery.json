@@ -8,7 +8,7 @@
 		"template engine",
 		"rendering"
 	],
-	"version": "1.0.0-beta",
+	"version": "1.0.1-beta",
 	"author": {
 		"name": "Frank Schüler",
 		"email": "SchuelerFrank@gmx.de",
