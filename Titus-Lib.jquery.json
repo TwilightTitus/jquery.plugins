@@ -1,7 +1,7 @@
 	{
-	"name": "de.titus.jquery.plugins",
-	"title": "jQuery Boilerplate",
-	"description": "A jump-start for jQuery plugins development.",
+	"name": "Titus-Lib",
+	"title": "Titus Lib",
+	"description": "This is a lib ",
 	"keywords": [
 		"jquery",
 		"plugins",

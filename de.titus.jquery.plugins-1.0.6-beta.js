@@ -68,7 +68,76 @@ if(de.titus.core.Namespace == undefined){
 		}		
 		return true;
 	};	
-};de.titus.core.Namespace.create("de.titus.core.DomHelper", function(){
+};de.titus.core.Namespace.create("de.titus.core.SpecialFunctions", function(){
+
+	de.titus.core.SpecialFunctions = {};
+	
+	/**
+	 * This is a special function to create an "eval"-function with an extends context.
+	 * 
+	 * @param $___DOMHELPER___$
+	 * @param $___STATEMENT___$
+	 * @param $___CONTEXT___$
+	 * @returns
+	 */
+	window.$___DE_TITUS_CORE_EVAL_WITH_CONTEXT_EXTENTION___$ = function ($___DOMHELPER___$, $___STATEMENT___$, $___CONTEXT___$) {
+		if ($___CONTEXT___$ != undefined) {
+			$___DOMHELPER___$.mergeObjects(this, $___CONTEXT___$);
+		}
+		if ($___STATEMENT___$ != undefined) {
+			return this.eval($___STATEMENT___$);
+		}
+	};
+	
+});de.titus.core.Namespace("de.titus.core.regex.Matcher", function() {
+	fiducia.utils.regex.Matcher = function(/* RegExp */aRegExp, /* String */aText) {
+		this.internalRegex = aRegExp;
+		this.processingText = aText;
+		this.currentMatch = undefined;
+	}
+
+	fiducia.utils.regex.Matcher.prototype.isMatching = function() {
+		return this.internalRegex.test(this.processingText);
+	};
+
+	fiducia.utils.regex.Matcher.prototype.next = /* boolean */function() {
+		this.currentMatch = this.internalRegex.exec(this.processingText);
+		if (this.currentMatch != undefined) {
+			this.processingText = this.processingText.replace(this.currentMatch[0], "");
+			return true;
+		}
+		return false;
+	};
+	
+	fiducia.utils.regex.Matcher.prototype.getMatch = /* boolean */function() {
+		if (this.currentMatch != undefined)
+			return this.currentMatch[0];
+		return undefined;
+	};
+
+	fiducia.utils.regex.Matcher.prototype.getGroup = function(/* int */aGroupId) {
+		if (this.currentMatch != undefined)
+			return this.currentMatch[aGroupId];
+		return undefined;
+	};
+
+	fiducia.utils.regex.Matcher.prototype.replaceAll = function(/* String */aReplaceValue, /* String */aText) {
+		if (this.currentMatch != undefined)
+			return aText.replace(this.currentMatch[0], aReplaceValue);
+		return aText;
+	};
+});
+
+de.titus.core.Namespace("de.titus.core.regex.Regex", function() {
+
+	fiducia.utils.regex.Regex = function(/*String */ aRegex, /*String */ aOptions) {
+		this.internalRegex = new RegExp(aRegex, aOptions);
+	};
+	
+	fiducia.utils.regex.Regex.prototype.parse = /*fiducia.utils.regex.Matcher*/ function(/*String*/ aText){
+		return new fiducia.utils.regex.Matcher(this.internalRegex, aText);
+	};		
+});de.titus.core.Namespace.create("de.titus.core.DomHelper", function(){
 	
 	/**
 	 * 
@@ -271,28 +340,7 @@ if(de.titus.core.Namespace == undefined){
 		return de.titus.core.GLOBAL_DOMHELPER_INSTANCE;
 	};
 });
-de.titus.core.Namespace.create("de.titus.core.SpecialFunctions", function(){
 
-	de.titus.core.SpecialFunctions = {};
-	
-	/**
-	 * This is a special function to create an "eval"-function with an extends context.
-	 * 
-	 * @param $___DOMHELPER___$
-	 * @param $___STATEMENT___$
-	 * @param $___CONTEXT___$
-	 * @returns
-	 */
-	window.$___DE_TITUS_CORE_EVAL_WITH_CONTEXT_EXTENTION___$ = function ($___DOMHELPER___$, $___STATEMENT___$, $___CONTEXT___$) {
-		if ($___CONTEXT___$ != undefined) {
-			$___DOMHELPER___$.mergeObjects(this, $___CONTEXT___$);
-		}
-		if ($___STATEMENT___$ != undefined) {
-			return this.eval($___STATEMENT___$);
-		}
-	};
-	
-});
 de.titus.core.Namespace.create("de.titus.TemplateEngine", function() {
 	
 	/**
