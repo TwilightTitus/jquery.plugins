@@ -1,0 +1,10 @@
+<div tpl-foreach="${items}" tpl-foreach-var-item="item" tpl-foreach-repeat-content="true">
+
+	<div class="item">
+		<span >${item.name} -> 
+		<ul class="values" tpl-foreach="${item.values}" tpl-foreach-var-item="value" tpl-foreach-repeat-content="true">
+			<li>${value}</li>
+		</ul>
+	</span> 
+	</div>
+</div>

@@ -1,0 +1,4 @@
+{"configs":[
+	{"filter": "", "logLevel": "WARN", "appenders":["de.titus.logging.InteligentBrowserAppender","de.titus.logging.HtmlAppender"]},
+	{"filter": "de.titus.jstl.functions", "logLevel": "WARN", "appenders":["de.titus.logging.InteligentBrowserAppender","de.titus.logging.HtmlAppender"]}
+]}

@@ -1,0 +1,5 @@
+{"configs":[
+	{"filter": "", "logLevel": "ERROR", "appenders":["de.titus.logging.InteligentBrowserAppender"]},
+	{"filter": "de.titus.logging", "logLevel": "INFO", "appenders":["de.titus.logging.InteligentBrowserAppender", "de.titus.logging.HtmlAppender"]},
+	{"filter": "de.titus.logging.test", "logLevel": "DEBUG", "appenders":["de.titus.logging.InteligentBrowserAppender"]}
+]}

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Basic Sample</title>
+<script src="../../../libs/jquery-1.11.1.js" type="text/javascript"></script>
+	<script src="../../../dist/1.0.5-beta/de.titus.jquery.plugins-1.0.5-beta.js" type="text/javascript"></script>
+	<style type="text/css">
+html, body {
+	font-size: 10pt;
+}
+.item{}
+.item .values{display: none; position: absolute; margin: 0em; padding: 0em; background-color: white;}
+.item:HOVER .values{display: block;}
+.item .values:HOVER{display: block;}
+</style>
+</head>
+<body>
+	<div id="display" tpl-template-remote="performance.tpl.html">loading</div>
+	<script type="text/javascript">
+		
+		
+
+		$(document).ready(function() {
+			var testData = {};
+			testData.items = new Array();
+			for(var i = 0; i < 100; i++){
+				testData.items[i] = {};
+				testData.items[i].name = "name " + i;
+				testData.items[i].values = new Array();
+				for(var j = 0; j < 10; j++){					
+					testData.items[i].values[j] = "value [" + i + "|" + j + "] -> " + "test test test, test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test";
+				}
+			}
+			window.setTimeout(function() {
+				console.log("start templating");
+				
+				$("#display").doTemplating({data: testData});
+				console.log("end templating");
+			}, 100);
+		});
+		/*-->*/
+	</script>
+</body>
+</html>
