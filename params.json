@@ -1,0 +1,7 @@
+{
+  "name": "JQuery - Titus Lib ",
+  "tagline": "jquery, jstl, logging, template engine, javascript, template language",
+  "body": "### Welcome to JQuery - Titus Lib .\r\n\r\nThis javacript/JQuery library provides some useful features.\r\n* you get a template language -> **J**ava**s**cript **T**emplate **L**anguage - JSTL. This similar to Java Standard Tag Library\r\n* you get a logging system similar to log4j in java. \r\n\r\nAnd all this for the client side of a web application.\r\n\r\nFor more information and a sample, make a download and read the doc.\r\n\r\n",
+  "google": "",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
