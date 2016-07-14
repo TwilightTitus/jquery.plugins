@@ -1,0 +1,3 @@
+<h3 jstl-if="${content.headline != undefined && content.headline != ''}"><small>${content.headline}</small></h3>
+<p jstl-text-prevent-format jstl-if="${typeof content.content === 'string'}">${content.content}</p>
+<p jstl-if="${typeof content.content !== 'string'}" jstl-foreach="${content.content}" jstl-foreach-var="text"><span jstl-text-prevent-format>${text}<span><br></p>

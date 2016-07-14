@@ -1,0 +1,14 @@
+.page-content{
+	padding: 1rem;
+}
+
+.page-content .hljs {
+	background: transparent;
+	padding: 0;
+}
+.navbar-page .navbar-article{
+	padding-left: 2rem;
+}
+.module-page-content{
+	margin-bottom: 3rem;
+}

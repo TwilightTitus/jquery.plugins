@@ -1,0 +1,12 @@
+<div jstl-if="${moduleData.pages != undefined && moduleData.pages.length > pageNumber}">
+	<jstl jstl-data="${moduleData.pages[pageNumber]}" jstl-data-var="page"></jstl>
+	<jstl jstl-data="${page.data}" jstl-data-mode="remote" jstl-data-var="pageData"></jstl>
+	<h1>${page.title}</h1>
+	<h1>
+		<small>${page.teaser}</small>
+	</h1>
+	<div jstl-include="doc/templates/page.tpl.html"></div>
+	<div>
+		<a href="doc/index.html?module=${moduleId}&page=${pageNumber - 1}" jstl-if="${pageNumber > 0}">prev</a> <span>${page.title}</span> <a href="doc/index.html?module=${moduleId}&page=${pageNumber + 1}" jstl-if="${moduleData.pages.length > (pageNumber + 1)}">next</a>
+	</div>
+</div>

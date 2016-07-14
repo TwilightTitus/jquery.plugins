@@ -1,0 +1,15 @@
+{	
+	"text": "a Simple Text",
+	"articles": [
+		{
+			"title": "article",
+			"teaser": "article Teaser",
+			"content": [
+				{
+					"type": "text",
+					"content": "das ist ein text\n\n\n\t\tnuew linen\n\t\tnuew linen\n\t\tnuew line"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="../" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>de.titus.jquery.plugins</title>
+
+<link rel="stylesheet" href="doc/css/bootstrap.3.3.6.min.css" />
+<link rel="stylesheet" href="doc/css/base.css" />
+<link rel="stylesheet" href="doc/libs/highlight/styles/mono-blue.css" />
+
+<script type="text/javascript" src="doc/libs/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="dist/2.0.0/de.titus.jquery.plugins.2.0.0.min.js"></script>
+<script src="doc/libs/bootstrap.3.3.6.min.js"></script>
+<script src="doc/libs/highlight/highlight.pack.js"></script>
+
+</head>
+<body data-spy="scroll" data-target=".navbar-articles" data-offset="50" jstl-data="doc/modules.data.json" jstl-data-mode="remote" jstl-success="hljs.initHighlightingOnLoad(); jQuery('.page-content').show()" jstl-autorun>
+	<jstl jstl-data="module" jstl-data-mode="url-parameter" jstl-data-var="moduleId"></jstl>
+	<jstl jstl-data="page" jstl-data-mode="url-parameter" jstl-data-var="pageNumber"></jstl>
+	<jstl jstl-data="${parseInt(pageNumber) || 0}" jstl-data-var="pageNumber"></jstl>
+	<jstl jstl-if="${moduleId != undefined}" jstl-data="${modules[moduleId]}" jstl-data-var="module"> </jstl>
+	<div class="page-content" style="display: none;">
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" jstl-if="${module != undefined}">${module.title}</a> 
+					<a class="navbar-brand" jstl-if="${moduleId == undefined}">${header.title}</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav navbar-right" jstl-foreach="${modules}" jstl-foreach-var="module" jstl-foreach-status="moduleStatus">
+						<li jstl-if="${moduleStatus.index == 0}"><a href="doc/index.html?page=0">HOME</a></li>
+						<li><a href="doc/index.html?module=${moduleStatus.key}&page=0">${module.title}</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div jstl-if="${module != undefined}" jstl-data="${module.data}" jstl-data-mode="remote" jstl-data-var="moduleData" jstl-include="doc/templates/module.tpl.html"></div>
+		<footer>
+			<small>This documantation is rendered by the JSTL</small>
+		</footer>
+	</div>
+</body>
+</html>

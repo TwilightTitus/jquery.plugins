@@ -1,0 +1,9 @@
+{
+	"pages": [
+		{
+		"title": "summary",
+		"teaser": "",
+		"data":"doc/modules/logging/chapters/summary.chapter.data.json"
+		}
+	]
+}

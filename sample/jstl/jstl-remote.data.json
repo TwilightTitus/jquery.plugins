@@ -1,12 +1,19 @@
 {
 	"remoteData": "remote data",
+	"startIndex": 2,
+	"testImage": "https://www.google.de/images/nav_logo100633543.png",
+	"addAttributes":[
+		{"name": "attribute-1", "value":"value-1"},
+		{"name": "attribute-2", "value":"value-2"},
+		{"name": "attribute-3", "value":"value-3"}
+	],
 	"list":[
-		{"id":1, "name": "item 1", "show":true},
-		{"id":2, "name": "item 2", "show":false},
-		{"id":3, "name": "item 3", "show":true},
-		{"id":4, "name": "item 4", "show":true},
-		{"id":5, "name": "item 5", "show":false},
-		{"id":6, "name": "item 6", "show":true},
-		{"id":7, "name": "item 7", "show":true} 
+{"id":1, "name": "item 1", "show":true},
+	{"id":2, "name": "item 2", "show":false},
+	{"id":3, "name": "item 3", "show":true},
+	{"id":4, "name": "item 4", "show":true},
+	{"id":5, "name": "item 5", "show":false},
+	{"id":6, "name": "item 6", "show":true},
+	{"id":7, "name": "item 7", "show":true}
 	]
 }
