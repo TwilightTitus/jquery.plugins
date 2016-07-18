@@ -1312,7 +1312,8 @@ de.titus.core.Namespace.create("de.titus.jquery.DomHelper", function() {
 		};
 		
 		de.titus.core.Page.prototype.buildUrl = function(aUrl) {
-			if (this.detectBrowser().microsoft) {
+			var browser = this.detectBrowser();
+			if (browser.ie && browser.ie < 11) {
 				var tempUrl = aUrl.toLowerCase().trim();
 				if (this.hasBaseTag && !tempUrl.indexOf("http:") == 0 && !tempUrl.indexOf("https:") == 0 && !tempUrl.indexOf("ftp:") == 0 && !tempUrl.indexOf("ftps:") == 0 && !tempUrl.indexOf("mailto:") == 0 && !tempUrl.indexOf("notes:") == 0 && !tempUrl.indexOf("/") == 0) {
 					return this.baseTagValue + aUrl;
@@ -1324,28 +1325,24 @@ de.titus.core.Namespace.create("de.titus.jquery.DomHelper", function() {
 		de.titus.core.Page.prototype.detectBrowser = function() {
 			/* http://stackoverflow.com/a/21712356/2120330 */
 			var result = {
-			"microsoft" : false,
+			"ie" : false,
+			"edge": false,
 			"other" : false
 			};
-			var ua = window.navigator.userAgent;
+			var ua = window.navigator.userAgent;			
+			if (ua.indexOf('MSIE ') > 0)
+				result.ie = 8;
+			else if (ua.indexOf("Trident/7.0") > 0)
+				result.ie = 11;
+			else if (ua.indexOf("Trident/6.0") > 0)
+				result.ie = 10;
+			else if (ua.indexOf("Trident/5.0") > 0)
+				result.ie = 9;	
+			else if (ua.indexOf('Edge/') > 0)
+				result.edge = 1;	
+			else
+				result.other = true;
 			
-			var msie = ua.indexOf('MSIE ');
-			if (msie > 0) {
-				result.microsoft = true;
-				return result;
-			}
-			var trident = ua.indexOf('Trident/');
-			if (trident > 0) {
-				result.microsoft = true;
-				return result;
-			}
-			var edge = ua.indexOf('Edge/');
-			if (edge > 0) {
-				result.microsoft = true;
-				return result;
-			}
-			
-			result.other = true;
 			return result;
 		};
 		
@@ -1370,7 +1367,8 @@ de.titus.core.Namespace.create("de.titus.jquery.DomHelper", function() {
 		}
 		;
 	});
-})($);de.titus.core.Namespace.create("de.titus.core.UUID", function() {
+})($);
+de.titus.core.Namespace.create("de.titus.core.UUID", function() {
 	de.titus.core.UUID = function(customSpacer) {
 		var spacer = customSpacer || "-";
 		var template = 'xxxxxxxx' + spacer + 'xxxx' + spacer + '4xxx' + spacer + 'yxxx' + spacer + 'xxxxxxxxxxxx';
