@@ -184,7 +184,7 @@
 					"type": "code",
 					"codetype": "html",
 					"headline": "jstl-include sample",
-					"content": "<[any tag] jstl-include=\"[string|expression]\" jstl-include-mode=\"[append|prepend|replace]\" jstl-include-options=\"[ajax request options]\"></[any tag]>"
+					"content": "<[any tag] jstl-include=\"[string|expression]\" jstl-include-mode=\"[append|prepend|replace]\" jstl-include-options=\"[ajax request options]\" jstl-include-cache-disabled jstl-include-ajax-cache-disabled></[any tag]>"
 				},
 				{
 					"type": "text",
@@ -206,6 +206,16 @@
 					"type": "text",
 					"headline": "\"jstl-include-options\" - Attribute (optional)",
 					"content": "The value must be an object. This object would be merged with the ajax request object from jquery. You are able to change all default values, without \"success\" and \"error\". Be carrful if you use this feature!"
+				},
+				{
+					"type": "text",
+					"headline": "\"jstl-include-cache-disabled\" - Attribute (optional)",
+					"content": "This attribute disabled the build in template cache! If the template url with a query, the cache would be disabled by default! This cache works not across page requests."
+				},
+				{
+					"type": "text",
+					"headline": "\"jstl-include-ajax-cache-disabled\" - Attribute (optional)",
+					"content": "This attribute disabled the ajax request cache/ browser cache! If the template url with a query, the cache would be disabled by default!"
 				}
 			]
 		},
