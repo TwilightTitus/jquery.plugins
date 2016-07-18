@@ -1312,7 +1312,8 @@ de.titus.core.Namespace.create("de.titus.jquery.DomHelper", function() {
 		};
 		
 		de.titus.core.Page.prototype.buildUrl = function(aUrl) {
-			if (this.detectBrowser().microsoft) {
+			var browser = this.detectBrowser();
+			if (browser.ie && browser.ie < 11) {
 				var tempUrl = aUrl.toLowerCase().trim();
 				if (this.hasBaseTag && !tempUrl.indexOf("http:") == 0 && !tempUrl.indexOf("https:") == 0 && !tempUrl.indexOf("ftp:") == 0 && !tempUrl.indexOf("ftps:") == 0 && !tempUrl.indexOf("mailto:") == 0 && !tempUrl.indexOf("notes:") == 0 && !tempUrl.indexOf("/") == 0) {
 					return this.baseTagValue + aUrl;
@@ -1324,28 +1325,24 @@ de.titus.core.Namespace.create("de.titus.jquery.DomHelper", function() {
 		de.titus.core.Page.prototype.detectBrowser = function() {
 			/* http://stackoverflow.com/a/21712356/2120330 */
 			var result = {
-			"microsoft" : false,
+			"ie" : false,
+			"edge": false,
 			"other" : false
 			};
-			var ua = window.navigator.userAgent;
+			var ua = window.navigator.userAgent;			
+			if (ua.indexOf('MSIE ') > 0)
+				result.ie = 8;
+			else if (ua.indexOf("Trident/7.0") > 0)
+				result.ie = 11;
+			else if (ua.indexOf("Trident/6.0") > 0)
+				result.ie = 10;
+			else if (ua.indexOf("Trident/5.0") > 0)
+				result.ie = 9;	
+			else if (ua.indexOf('Edge/') > 0)
+				result.edge = 1;	
+			else
+				result.other = true;
 			
-			var msie = ua.indexOf('MSIE ');
-			if (msie > 0) {
-				result.microsoft = true;
-				return result;
-			}
-			var trident = ua.indexOf('Trident/');
-			if (trident > 0) {
-				result.microsoft = true;
-				return result;
-			}
-			var edge = ua.indexOf('Edge/');
-			if (edge > 0) {
-				result.microsoft = true;
-				return result;
-			}
-			
-			result.other = true;
 			return result;
 		};
 		
@@ -1370,7 +1367,8 @@ de.titus.core.Namespace.create("de.titus.jquery.DomHelper", function() {
 		}
 		;
 	});
-})($);de.titus.core.Namespace.create("de.titus.core.UUID", function() {
+})($);
+de.titus.core.Namespace.create("de.titus.core.UUID", function() {
 	de.titus.core.UUID = function(customSpacer) {
 		var spacer = customSpacer || "-";
 		var template = 'xxxxxxxx' + spacer + 'xxxx' + spacer + '4xxx' + spacer + 'yxxx' + spacer + 'xxxxxxxxxxxx';
@@ -1891,12 +1889,7 @@ de.titus.core.Namespace.create("de.titus.logging.ConsolenAppender", function() {
 	de.titus.logging.InteligentBrowserAppender.prototype.getAppender = function(){
 		if(this.appender == undefined)
 		{
-			var consoleAvalible = true;
-			try{
-				console.log("Test Logging!");
-			}catch (e) {
-				consoleAvalible = false;
-			}
+			var consoleAvalible = console && console.log === "function";			
 			
 			if(consoleAvalible)
 				this.appender = new de.titus.logging.ConsolenAppender();
@@ -2444,6 +2437,7 @@ de.titus.core.Namespace.create("de.titus.jstl.functions.Data", function() {
 		ajaxSettings.success = function(newData) {
 			$__THIS__$.addNewData(newData, aVarname, aDataContext, aProcessor, anExpressionResolver);
 		};
+		
 		$.ajax(ajaxSettings);
 	};
 	
@@ -2463,90 +2457,100 @@ de.titus.core.Namespace.create("de.titus.jstl.functions.Data", function() {
 		}
 	};
 });
-de.titus.core.Namespace.create("de.titus.jstl.functions.Include", function() {	
-	de.titus.jstl.functions.Include = function(){}; 
+de.titus.core.Namespace.create("de.titus.jstl.functions.Include", function() {
+	de.titus.jstl.functions.Include = function() {
+		this.cache = {};
+	};
 	de.titus.jstl.functions.Include.prototype = new de.titus.jstl.IFunction("include");
 	de.titus.jstl.functions.Include.prototype.constructor = de.titus.jstl.functions.Include;
 	
-	/****************************************************************
+	/***************************************************************************
 	 * static variables
-	 ***************************************************************/
+	 **************************************************************************/
 	de.titus.jstl.functions.Include.LOGGER = de.titus.logging.LoggerFactory.getInstance().newLogger("de.titus.jstl.functions.Include");
 	
-	/****************************************************************
+	/***************************************************************************
 	 * functions
-	 ***************************************************************/
+	 **************************************************************************/
 	
-	de.titus.jstl.functions.Include.prototype.run = function(aElement, aDataContext, aProcessor){
+	de.titus.jstl.functions.Include.prototype.run = function(aElement, aDataContext, aProcessor) {
 		if (de.titus.jstl.functions.Include.LOGGER.isDebugEnabled())
 			de.titus.jstl.functions.Include.LOGGER.logDebug("execute run(" + aElement + ", " + aDataContext + ", " + aProcessor + ")");
 		
 		var processor = aProcessor || new de.titus.jstl.Processor();
 		var expressionResolver = processor.expressionResolver || new de.titus.jstl.ExpressionResolver();
 		
-		var expression = aElement.attr( processor.config.attributePrefix + this.attributeName);
-		if(expression != undefined){		
+		var expression = aElement.attr(processor.config.attributePrefix + this.attributeName);
+		if (expression != undefined) {
 			this.internalProcessing(expression, aElement, aDataContext, processor, expressionResolver);
 		}
 		return new de.titus.jstl.FunctionResult(true, true);
 	};
 	
-	de.titus.jstl.functions.Include.prototype.internalProcessing = function(anIncludeExpression, aElement, aDataContext, aProcessor, anExpressionResolver){
-		var element = aElement;
+	de.titus.jstl.functions.Include.prototype.internalProcessing = function(anIncludeExpression, aElement, aDataContext, aProcessor, anExpressionResolver) {
 		var url = anExpressionResolver.resolveText(anIncludeExpression, aDataContext);
-		var includeMode = this.getIncludeMode(aElement, aDataContext, aProcessor, anExpressionResolver); 
-		var options = this.getOptions(aElement, aDataContext, aProcessor, anExpressionResolver);
+		var disableCaching = url.indexOf("?") >= 0 || aElement.attr(aProcessor.config.attributePrefix + this.attributeName + "-cache-disabled") != undefined;
+		var content = "";
+		if (!disableCaching)
+			content = this.cache[url];
 		
-		var ajaxSettings = {
+		var includeMode = this.getIncludeMode(aElement, aDataContext, aProcessor, anExpressionResolver);
+		if (content)
+			this.addHtml(aElement, content, includeMode);
+		else {
+			var options = this.getOptions(aElement, aDataContext, aProcessor, anExpressionResolver);
+			var ajaxSettings = {
 			'url' : de.titus.core.Page.getInstance().buildUrl(url),
 			'async' : false,
-			'cache' : true,
-			"dataType": "html"
+			'cache' : aElement.attr(aProcessor.config.attributePrefix + this.attributeName + "-ajax-cache-disabled") == undefined,
+			"dataType" : "html"
 			};
-		ajaxSettings = $.extend(true,ajaxSettings, options);
-
-		var this_ = this;
-		ajaxSettings.success = function(template) {			
-			this_.addHtml(element, template, includeMode);	
-		};
-		
-		ajaxSettings.error = function(error){
-			throw JSON.stringify(error);
-		};
-		$.ajax(ajaxSettings)
+			ajaxSettings = $.extend(true, ajaxSettings, options);
+			
+			var $__this__$ = this;
+			ajaxSettings.success = function(template) {
+				$__this__$.cache[url] = template;
+				$__this__$.addHtml(aElement, template, includeMode);
+			};
+			
+			ajaxSettings.error = function(error) {
+				throw JSON.stringify(error);
+			};
+			$.ajax(ajaxSettings)
+		}
 	};
 	
-	de.titus.jstl.functions.Include.prototype.getOptions= function(aElement, aDataContext, aProcessor, anExpressionResolver){
-		var options = aElement.attr( aProcessor.config.attributePrefix + this.attributeName + "-options");
-		if(options != undefined){
+	de.titus.jstl.functions.Include.prototype.getOptions = function(aElement, aDataContext, aProcessor, anExpressionResolver) {
+		var options = aElement.attr(aProcessor.config.attributePrefix + this.attributeName + "-options");
+		if (options != undefined) {
 			options = anExpressionResolver.resolveText(options, aDataContext);
 			options = anExpressionResolver.resolveExpression(options, aDataContext);
 			return options || {};
-		}	
+		}
 		
 		return {};
 	};
 	
-	de.titus.jstl.functions.Include.prototype.getIncludeMode= function(aElement, aDataContext, aProcessor, anExpressionResolver){
-		var mode = aElement.attr( aProcessor.config.attributePrefix + this.attributeName + "-mode");
-		if(mode == undefined)
+	de.titus.jstl.functions.Include.prototype.getIncludeMode = function(aElement, aDataContext, aProcessor, anExpressionResolver) {
+		var mode = aElement.attr(aProcessor.config.attributePrefix + this.attributeName + "-mode");
+		if (mode == undefined)
 			return "replace";
 		
-		mode  = mode.toLowerCase(); 
-		if(mode == "append" || mode == "replace" || mode == "prepend")
+		mode = mode.toLowerCase();
+		if (mode == "append" || mode == "replace" || mode == "prepend")
 			return mode;
 		
 		return "replace";
 	};
 	
-	de.titus.jstl.functions.Include.prototype.addHtml= function(aElement, aTemplate, aIncludeMode){
+	de.titus.jstl.functions.Include.prototype.addHtml = function(aElement, aTemplate, aIncludeMode) {
 		if (de.titus.jstl.functions.Include.LOGGER.isDebugEnabled())
 			de.titus.jstl.functions.Include.LOGGER.logDebug("execute addHtml(" + aElement + ", " + aTemplate + ", " + aIncludeMode + ")");
-		if(aIncludeMode == "replace")
+		if (aIncludeMode == "replace")
 			aElement.html(aTemplate);
-		else if(aIncludeMode == "append")
+		else if (aIncludeMode == "append")
 			aElement.append(aTemplate);
-		else if(aIncludeMode == "prepend")
+		else if (aIncludeMode == "prepend")
 			aElement.prepend(aTemplate);
 		else
 			aElement.html(aTemplate);
