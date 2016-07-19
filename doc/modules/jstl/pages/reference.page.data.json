@@ -385,12 +385,12 @@
 				},
 				{
 					"type": "text",
-					"headline": "text-prevent-format",
+					"headline": "jstl-text-prevent-format",
 					"content": "\"text-prevent-format\" will retain the formatting. This only availible at plain text content."
 				},
 				{
 					"type": "text",
-					"headline": "text-trim-length",
+					"headline": "jstl-text-trim-length",
 					"content": "With this \"text-trim-length\" attribute you can define a max length of text, that will be insert as content. This would only works with plain text."
 				}
 			]
