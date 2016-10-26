@@ -13,7 +13,20 @@
 				{
 					"type": "code",
 					"codetype": "html",
-					"content": "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<script type=\"text\/javascript\" src=\"libs\/jquery-2.1.1.js\"><\/script>\n<script type=\"text\/javascript\" src=\"dist\/1.6.0\/de.titus.jquery.plugins-1.6.0.js\"><\/script>\n\n<\/head>\n<body>\n<\/body>\n<\/html>"
+					"content": [
+						"<!DOCTYPE html>",
+						"<html>",
+						"<head>",
+						"<meta charset=\"utf-8\">",
+						"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+						"<script type=\"text\/javascript\" src=\"libs\/jquery-2.1.1.js\"><\/script>",
+						"<script type=\"text\/javascript\" src=\"dist\/2.5.0\/de.titus.jquery.plugins.2.5.0.min.js\"><\/script>",
+						"",
+						"<\/head>",
+						"<body>",
+						"<\/body>",
+						"<\/html>"
+					]
 				},
 				{
 					"type": "text",
@@ -22,7 +35,7 @@
 			]
 		},
 		{
-			"tag":"hello-world",
+			"tag": "hello-world",
 			"title": "Hello World",
 			"teaser": "",
 			"content": [
@@ -34,7 +47,22 @@
 					"type": "code",
 					"headline": "\"Hello World\" Sample",
 					"codetype": "html",
-					"content": "<!DOCTYPE html>\n<html>\n<head>\n<base href=\"../../../../\" />\n<meta charset=\"utf-8\"/>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>\n<title>Hello World</title>\n<script type=\"text/javascript\" src=\"libs/jquery-2.1.1.js\"></script>\n<script type=\"text/javascript\" src=\"dist/1.6.0/de.titus.jquery.plugins-1.6.0.js\"></script>\n</head>\n<body jstl-data=\"{text:'Hello World'}\" jstl-autorun>\n${text}\n</body>\n</html>"
+					"content": [
+						"<!DOCTYPE html>",
+						"<html>",
+						"<head>",
+						"<base href=\"../../../../\" />",
+						"<meta charset=\"utf-8\"/>",
+						"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>",
+						"<title>Hello World</title>",
+						"<script type=\"text/javascript\" src=\"libs/jquery-2.1.1.js\"></script>",
+						"<script type=\"text/javascript\" src=\"dist/2.5.0/de.titus.jquery.plugins.2.5.0.min.js\"></script>",
+						"</head>",
+						"<body jstl-data=\"{text:'Hello World'}\" jstl-autorun>",
+						"${text}",
+						"</body>",
+						"</html>"
+					]
 				},
 				{
 					"type": "iframe",
@@ -60,7 +88,13 @@
 				{
 					"type": "code",
 					"codetype": "javascript",
-					"content": "$(document).ready(function(){\n\t$('[jstl-autorun]').each(function(){\n\t\t$(this).jstl();\n\t});\n});"
+					"content": [
+						"$(document).ready(function(){",
+						"\t$('[jstl-autorun]').each(function(){",
+						"\t\t$(this).jstl();",
+						"\t});",
+						"});"
+					]
 				},
 				{
 					"type": "button",
@@ -82,7 +116,7 @@
 			]
 		},
 		{
-			"tag":"best-sample",
+			"tag": "best-sample",
 			"title": "Best sample for JSTL",
 			"teaser": "",
 			"content": [

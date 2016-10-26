@@ -6,6 +6,10 @@
 			"title": "What is \"de.titus.core\"?",
 			"teaser": "\"de.titus.core\" is a collection of utility functions and jQuery plugins for web developer.",
 			"content": [
+				{
+					"type": "text",
+					"content": "Event Binding!"
+				}
 			]
 		}
 	]
