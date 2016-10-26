@@ -54,6 +54,42 @@
 			]
 		},
 		{
+			"tag": "jstl-event",
+			"title": "JSTL Events",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",
+					"headline": "JSTL Events",
+					"content": [ 
+						"The JSTL provides events: \"jstl-on-load\", \"jstl-on-success\", \"jstl-on-ready\", \"jstl-on-fail\"",
+						"",
+						"The events are catchable by jQuery."
+					]
+				},
+				{
+					"type": "text",
+					"headline": "jstl-on-load",
+					"content": "This event would be fired, if JSTL starts the templating process."
+				},				
+				{
+					"type": "text",
+					"headline": "jstl-on-success",
+					"content": "This event would be fired, if a dom element and all childs processed. This event would be fires for every element."
+				},
+				{
+					"type": "text",
+					"headline": "jstl-on-ready",
+					"content": "This event would be fired, if JSTL process finished."
+				},
+				{
+					"type": "text",
+					"headline": "jstl-on-fail",
+					"content": "This event would be fired, if JSTL detect an error."
+				}
+			]
+		},
+		{
 			"tag": "expression",
 			"title": "Expression",
 			"teaser": "",
@@ -70,18 +106,10 @@
 					"subcontent": "Your expression can be an javacript call or an variable from the data context."
 				},
 				{
-					"type": "code",
-					"codetype": "jsp",
-					"headline": "some expression samples",
-					"content": [
-						"${my.data}",
-						"${document.location.href}",
-						"${my.javascript.function}",
-						"${\"a static string\"}",
-						"${\"a static string\" + my.data}",
-						"${my.data == true}",
-						"${my.data == undefined}"
-					]
+					"type": "button",
+					"text": "full reference the expression",
+					"link": "doc/index.html?module=core&page=1#expression-language",
+					"linktype": "relativ"
 				}
 			]
 		},
@@ -118,7 +146,7 @@
 				{
 					"type": "code",
 					"codetype": "html",
-					"headline": "jstl-if sample",
+					"headline": "jstl-data sample",
 					"content": "<[any tag] jstl-data=\"[object|string|expression]\" jstl-data-mode=\"[direct|remote|url-parameter]\" jstl-data-var=\"[a variable name]\" jstl-data-options=\"[ajax request options]\"></[any tag]>"
 				},
 				{
@@ -170,7 +198,7 @@
 					"content": "The value must be an object. This object would be merged with the ajax request object from jquery. You are able to change all default values, without \"success\" and \"error\". Be carrful if you use this feature!"
 				}
 			]
-		},
+		},		
 		{
 			"tag": "jstl-include",
 			"title": "jstl-include",
@@ -300,6 +328,69 @@
 						"\t\"context\" : [the full data context]",
 						"}"
 					]
+				}
+			]
+		},
+		{
+			"tag": "jstl-databind",
+			"title": "jstl-databind",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",
+					"content": "With \"jstl-databind\" you can bind a value on the dom element. JSTL used the jQuery data function to bind values!"
+				},
+				{
+					"type": "code",
+					"codetype": "html",
+					"headline": "jstl-databind sample",
+					"content": "<[any tag] jstl-databind=\"[object|string|expression]\" jstl-databind-name=\"[a variable name]\" ></[any tag]>"
+				},
+				{
+					"type": "text",
+					"headline": "\"jstl-databind\" - Attribute (requiered)",
+					"content": [
+						"At content of this attribute, you can define a json object, evaluate an variable, run a javascript expression or use a static string. All this ways can be combined with evaluating a variable or execute an javascript.\nThe condition for the expression is, that the result must be a string or an object."
+					]
+				}				,
+				{
+					"type": "text",
+					"headline": "\"jstl-databind-name\" - Attribute (requiered)",
+					"content": [
+						"The value of this attribute must be a static string. With the static string you define a new variable at data context of the dom element."
+					]
+				}
+			]
+		},
+		{
+			"tag": "jstl-eventbind",
+			"title": "jstl-eventbind",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",
+					"content": "\"jstl-eventbind\" execute the event binding from the \"de.titus.core\" module!"
+				},
+				{
+					"type": "code",
+					"codetype": "html",
+					"headline": "jstl-eventbind sample",
+					"content": "<[any tag] jstl-eventbind=\"\" event-type=\"[eventname]\" event-action=\"[expression to a function]\" event-data=\"[any]\" event-prevent-default=\"\"></[any tag]>"
+				},
+				{
+					"type": "text",
+					"headline": "\"jstl-eventbind\" - Attribute (requiered)",
+					"content": [
+						"This tells the jstl processor to start the event binding for this element.",
+						"The process will be pass the current data context as context to the event binding.",
+						"Be careful: if you define \"event-data\" the jstl context will not passt to the event handler"
+					]
+				},
+				{
+					"type": "button",
+					"text": "reference for event binding",
+					"link": "doc/index.html?module=core&page=2#reference",
+					"linktype": "relativ"
 				}
 			]
 		},

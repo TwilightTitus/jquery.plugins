@@ -1,0 +1,97 @@
+{
+	"text": "",
+	"articles": [
+		{
+			"tag": "reference",
+			"title": "Reference",
+			"teaser": "",
+			"content": [				
+				{
+					"type": "code",
+					"codetype": "html",
+					"content": "<[any tag] event-type=\"[eventname]\" event-action=\"[expression to a function]\" event-data=\"[any]\" event-prevent-default=\"\" event-stop-propagation=\"\"></[any tag]>"
+				},
+				{
+					"type": "text",
+					"headline": "event-type",
+					"content": [
+						"This attribute defines the event for the event handle. You can define \"blank\" seperated multiple events.",
+						"(event-type: click | change | keyup | keypressed | any event type there can used by JQuery) "
+					]
+				},
+				{
+					"type": "text",
+					"headline": "event-action",
+					"content": "This must be define a javascript expression to function with the following structure!"
+				},
+				{
+					"type": "code",
+					"codetype": "javascript",
+					"content": "var eventhandler = function(event, data){}"
+				},
+				{
+					"type": "text",
+					"headline": "event-data",
+					"content": "With this attribute, you can define additional data to pass to the event handler."
+				},
+				{
+					"type": "text",
+					"headline": "event-prevent-default",
+					"content": "This prevent the execution of the default event handling by browser."
+				},
+				{
+					"type": "text",
+					"headline": "event-stop-propagation",
+					"content": "This prevent event bubbling up the dom tree."
+				}
+			]
+		},
+		{
+			"tag": "autorun",
+			"title": "Use autorun",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",
+					"headline": "event-autorun",
+					"content": [
+						"If you define this attribute on any dom element, the system will starts automatacly to process the event bindings for all childs.",
+						"The system will detact all dom changes and runs for all new event bindings under the dom hierachie."
+					]
+				},
+				{
+					"type": "code",
+					"codetype": "html",
+					"content": [
+						"<body event-autorun>",
+						"\t<a href=\"#\" event-type=\"click\" event-action=\"function(event){console.log(event);}\" event-prevent-default></a>",
+						"</body>"					
+					]
+				}
+			]
+		},
+		{
+			"tag": "javascript",
+			"title": "Use it in javascript",
+			"teaser": "",
+			"content": [
+			{
+					"type": "text",
+					"headline": "",
+					"content": [
+						"The event binding is a jquery plugin."
+					]
+				},
+				{
+					"type": "code",
+					"codetype": "javascript",
+					"content": [
+						"$(document).ready(function(){",
+						"\t$(\"[event-type]\").de_titus_core_EventBind([optional data context]);",
+						"});"					
+					]
+				}
+			]
+		}
+	]
+}

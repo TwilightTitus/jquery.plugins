@@ -1,0 +1,106 @@
+{
+	"text": "",
+	"articles": [
+		{
+			"tag": "expression-resolver",
+			"title": "Expression Resolver",
+			"teaser": "",
+			"content": [			
+				{
+					"type": "text",
+					"headline": "Expression Resolver",
+					"content": [
+						"The Expression Resolver is an Object orientated implementation to evaluate the expression language and resolves data from the data context by the given expression.",
+						"",
+						"To use this expression resolver, you need to create an instance."
+					]
+				},
+				{
+					"type": "code",
+					"codetype": "javascript",
+					"headline": "Expression Resolver function signature",
+					"content": [
+						"var expressionResolver = new de.titus.core.ExpressionResolver(); // create a resolver instance",
+						"expressionResolver.resolveText(aExpression, aDataContext, aDefaultValue);",
+						"expressionResolver.resolveExpression(aExpression, aDataContext, aDefaultValue);"
+					]
+				},
+				{
+					"type": "text",
+					"headline": "resolveText(aExpression, aDataContext, aDefaultValue)",
+					"content": [
+						"This function processed an String and resolved all expressions and replaced the expression at the String.",
+						"",
+						"This function returns always a String"
+					]
+				},
+				{
+					"type": "text",
+					"headline": "resolveExpression(aExpression, aDataContext, aDefaultValue)",
+					"content": [
+						"This function processed an String as an expression. This String must be one excact expression.",
+						"The result of this expression can be any data type. The data type depends on the resolved data!",
+						"",
+						"Can't the expression be resolved, the function retured the parameter \"aDefaultValue\"."
+					]
+				}
+			]
+		},
+		{
+			"tag": "expression-language",
+			"title": "Expression Language",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",
+					"content": [
+						"The expression can be used to evaluate value. The main use case is to evaluate values from templated data at html tags.",
+						"All values would be resolved by an given data context and the globel data context of javascript.",
+						"",
+						"Be careful: If you use user generated content to create an expression, it is possible to get script injections. If you use only static expressions, than is the expression injection save!"
+					]
+				},
+				{
+					"type": "code",
+					"codetype": "html",
+					"headline": "expression syntax",
+					"content": "${[your expression]}",
+					"subcontent": "Your expression can be an javacript call or an variable from the data context."
+				},
+				{
+					"type": "code",
+					"codetype": "jsp",
+					"headline": "some expression samples",
+					"content": [
+						"${my.data}",
+						"${document.location.href}",
+						"${my.javascript.function}",
+						"${\"a static string\"}",
+						"${\"a static string\" + my.data}",
+						"${my.data == true}",
+						"${my.data == undefined}"
+					]
+				}
+			]
+		},
+		{
+			"tag": "how-to-use",
+			"title": "How to use",
+			"teaser": "",
+			"content": [
+				{
+					"type": "code",
+					"codetype": "javascript",
+					"headline": "Simple example",
+					"content": [
+						"var dataContext = {name: 'John'}",
+						"var expressionResolver = new de.titus.core.ExpressionResolver();",
+						"console.log(expressionResolver.resolveText(\"The name is: ${name}\", dataContext , undefined)); //output: The name is: John",
+						"console.log(expressionResolver.resolveText(\"${document.location.href}\", dataContext , undefined)); //output: URL of the current HTML Page",
+						"console.log(expressionResolver.resolveExpression(\"${jQuery('body').html()}\", dataContext , undefined)); //output: used jQuery to get the HTML code from the body tag!"
+					]
+				}
+			]
+		}
+	]
+}
