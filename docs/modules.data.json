@@ -3,19 +3,19 @@
 		"home": {
 			"title": "Home",
 			"teaser":"Documentation for de.titus.jquery.plugins",
-			"data": "doc/modules/home/pages.data.json"
+			"data": "modules/home/pages.data.json"
 		},
 		"core": {
 			"title": "de.titus.core",
-			"data": "doc/modules/core/pages.data.json"
+			"data": "modules/core/pages.data.json"
 		},
 		"logging": {
 			"title": "logging",
-			"data": "doc/modules/logging/pages.data.json"
+			"data": "modules/logging/pages.data.json"
 		},
 		"jstl": {
 			"title": "JSTL",
-			"data": "doc/modules/jstl/pages.data.json"
+			"data": "modules/jstl/pages.data.json"
 		}
 	}
 }

@@ -3,7 +3,7 @@
 		{
 		"title": "summary",
 		"teaser": "",
-		"data":"doc/modules/logging/chapters/summary.chapter.data.json"
+		"data":"modules/logging/chapters/summary.chapter.data.json"
 		}
 	]
 }

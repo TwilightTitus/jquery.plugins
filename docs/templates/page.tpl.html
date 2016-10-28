@@ -9,7 +9,7 @@
 					<h4>${article.teaser}</h4>
 					<div class="article-content" jstl-foreach="${article.content}"
 						jstl-foreach-var="content" jstl-foreach-status="contentStatus">
-						<div jstl-include="doc/templates/${content.type}.content.tpl.html"></div>
+						<div jstl-include="templates/${content.type}.content.tpl.html"></div>
 					</div>
 				</article>
 			</div>
@@ -21,7 +21,7 @@
 					jstl-foreach="${moduleData.pages}" jstl-foreach-var="page"
 					jstl-foreach-status="pageStatus">
 					<li jstl-if="${pageStatus.index != pageNumber}"><a
-						href="doc/index.html?module=${moduleId}&page=${pageStatus.index}">${page.title}</a></li>
+						href="index.html?module=${moduleId}&page=${pageStatus.index}">${page.title}</a></li>
 					<li jstl-if="${pageStatus.index == pageNumber}"><a
 						class="activ">${page.title}</a>
 						<ul
@@ -30,7 +30,7 @@
 							jstl-foreach="${pageData.articles}" jstl-foreach-var="article"
 							jstl-foreach-status="articleStatus">
 							<li><a
-								href="doc/index.html?module=${moduleId}&page=${pageStatus.index}#${article.tag}">${article.title}</a></li>
+								href="index.html?module=${moduleId}&page=${pageStatus.index}#${article.tag}">${article.title}</a></li>
 						</ul></li>
 				</ul>
 			</div>

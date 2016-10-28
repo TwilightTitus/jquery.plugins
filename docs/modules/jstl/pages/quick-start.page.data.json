@@ -67,7 +67,7 @@
 				{
 					"type": "iframe",
 					"headline": "Result of \"Hello World\" Sample",
-					"src": "doc/modules/jstl/samples/HelloWorld.html"
+					"src": "modules/jstl/samples/HelloWorld.html"
 				},
 				{
 					"type": "text",
@@ -77,7 +77,7 @@
 				{
 					"type": "button",
 					"text": "reference for \"jstl-data\"",
-					"link": "doc/index.html?module=jstl&page=1#jstl-data",
+					"link": "index.html?module=jstl&page=1#jstl-data",
 					"linktype": "relativ"
 				},
 				{
@@ -99,7 +99,7 @@
 				{
 					"type": "button",
 					"text": "reference for \"jstl-autorun\"",
-					"link": "doc/index.html?module=jstl&page=1#jstl-processor",
+					"link": "index.html?module=jstl&page=1#jstl-processor",
 					"linktype": "relativ"
 				},
 				{
@@ -110,7 +110,7 @@
 				{
 					"type": "button",
 					"text": "reference for \"Expressions\"",
-					"link": "doc/index.html?module=jstl&page=1#expression",
+					"link": "index.html?module=jstl&page=1#expression",
 					"linktype": "relativ"
 				}
 			]

@@ -5,8 +5,8 @@
 	<h1>
 		<small>${page.teaser}</small>
 	</h1>
-	<div jstl-include="doc/templates/page.tpl.html"></div>
+	<div jstl-include="templates/page.tpl.html"></div>
 	<div>
-		<a href="doc/index.html?module=${moduleId}&page=${pageNumber - 1}" jstl-if="${pageNumber > 0}">prev</a> <span>${page.title}</span> <a href="doc/index.html?module=${moduleId}&page=${pageNumber + 1}" jstl-if="${moduleData.pages.length > (pageNumber + 1)}">next</a>
+		<a href="index.html?module=${moduleId}&page=${pageNumber - 1}" jstl-if="${pageNumber > 0}">prev</a> <span>${page.title}</span> <a href="index.html?module=${moduleId}&page=${pageNumber + 1}" jstl-if="${moduleData.pages.length > (pageNumber + 1)}">next</a>
 	</div>
 </div>

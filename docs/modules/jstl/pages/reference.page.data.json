@@ -108,7 +108,7 @@
 				{
 					"type": "button",
 					"text": "full reference the expression",
-					"link": "doc/index.html?module=core&page=1#expression-language",
+					"link": "index.html?module=core&page=1#expression-language",
 					"linktype": "relativ"
 				}
 			]
@@ -389,7 +389,7 @@
 				{
 					"type": "button",
 					"text": "reference for event binding",
-					"link": "doc/index.html?module=core&page=2#reference",
+					"link": "index.html?module=core&page=2#reference",
 					"linktype": "relativ"
 				}
 			]
