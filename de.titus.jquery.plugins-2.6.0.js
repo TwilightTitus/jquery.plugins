@@ -2845,6 +2845,7 @@ de.titus.core.Namespace.create("de.titus.jstl.functions.Eventbind", function() {
 				events.onSuccess = this.config.onSuccess;
 			if (this.config.onFail)
 				events.onFail = this.config.onFail;
+			this.config.element.hide();
 			return this.internalComputeElement(this.config.element, this.config.data, events, true);
 		};
 		
@@ -3016,6 +3017,7 @@ de.titus.core.Namespace.create("de.titus.jstl.functions.Eventbind", function() {
 				}
 				
 				this.config.element.trigger(de.titus.jstl.Constants.EVENTS.onReady, this);
+				this.config.element.show();
 			}
 		};
 	});
@@ -3037,37 +3039,46 @@ de.titus.core.Namespace.create("de.titus.jstl.Setup", function() {
 	de.titus.jstl.FunctionRegistry.getInstance().add(new de.titus.jstl.functions.TextContent());
 	de.titus.jstl.FunctionRegistry.getInstance().add(new de.titus.jstl.functions.AttributeContent());
 });
-
-de.titus.core.Namespace.create("de.titus.jquery.jstl.plugin", function() {
-	
-	/**
-	 * <code>
-	 * config: {
-	 * "data": dataContext,
-	 * "onLoad": function(){},
-	 * "onSuccess":function(){},
-	 * "onFail": function(){},
-	 * "attributePrefix" : "jstl-" 
-	 * }
-	 * </code>
-	 */
-	
-	(function($) {
+(function($) {
+	de.titus.core.Namespace.create("de.titus.jquery.jstl.plugin", function() {
+		
+		/**
+		 * <code>
+		 * config: {
+		 * "data": dataContext,
+		 * "onLoad": function(){},
+		 * "onSuccess":function(){},
+		 * "onFail": function(){},
+		 * "attributePrefix" : "jstl-" 
+		 * }
+		 * </code>
+		 */
+		
 		$.fn.jstl = function(/* config */aConfig) {
-			var config = {
-				"element" : this
-			};
-			config = $.extend(config, aConfig);
-			new de.titus.jstl.Processor(config).compute();
+			if (this.length == 0)
+				return;
+			else if (this.length > 1) {
+				return this.each(function() {
+					return $(this).jstl(aConfig);
+				});
+			} else {
+				var config = {
+					"element" : this
+				};
+				config = $.extend(config, aConfig);
+				var processor = new de.titus.jstl.Processor(config);
+				processor.compute();
+				return processor;
+			}
 		};
 		
-	}(jQuery));
-	
-	$(document).ready(function() {
-		$("[jstl-autorun]").each(function() {
-			$(this).jstl();
+		$(document).ready(function() {
+			$("[jstl-autorun]").jstl();
 		});
+		
 	});
+}(jQuery));
+de.titus.core.Namespace.create("de.titus.jquery.plugins", function() {	
 	
 });
 /*

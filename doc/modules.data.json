@@ -1,9 +1,10 @@
 {
-	"header": {
-		"title": "Documentation for de.titus.jquery.plugins",
-		"teaser": ""
-	},
 	"modules": {
+		"home": {
+			"title": "Home",
+			"teaser":"Documentation for de.titus.jquery.plugins",
+			"data": "doc/modules/home/pages.data.json"
+		},
 		"core": {
 			"title": "de.titus.core",
 			"data": "doc/modules/core/pages.data.json"

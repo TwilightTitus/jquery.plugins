@@ -1,0 +1,10 @@
+{
+	"pages": [
+		{
+		"tag":"Home",
+		"title": "Welcome to JQuery - Titus Lib.",
+		"teaser": "",
+		"data":"doc/modules/home/chapters/summary.chapter.data.json"
+		}
+	]
+}

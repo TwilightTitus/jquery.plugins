@@ -11,38 +11,59 @@
 <link rel="stylesheet" href="doc/libs/highlight/styles/mono-blue.css" />
 
 <script type="text/javascript" src="doc/libs/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="dist/2.5.0/de.titus.jquery.plugins.2.5.0.min.js"></script>
+<script type="text/javascript" src="dist/2.6.0/de.titus.jquery.plugins.2.6.0.min.js"></script>
 <script src="doc/libs/bootstrap.3.3.6.min.js"></script>
 <script src="doc/libs/highlight/highlight.pack.js"></script>
 
 </head>
-<body data-spy="scroll" data-target=".navbar-articles" data-offset="50" jstl-data="doc/modules.data.json" jstl-data-mode="remote" jstl-success="hljs.initHighlightingOnLoad(); jQuery('.page-content').show()" jstl-autorun>
+<body jstl-data="doc/modules.data.json" jstl-data-mode="remote" jstl-success="hljs.initHighlightingOnLoad();" jstl-autorun>
 	<jstl jstl-data="module" jstl-data-mode="url-parameter" jstl-data-var="moduleId"></jstl>
 	<jstl jstl-data="page" jstl-data-mode="url-parameter" jstl-data-var="pageNumber"></jstl>
 	<jstl jstl-data="${parseInt(pageNumber) || 0}" jstl-data-var="pageNumber"></jstl>
 	<jstl jstl-if="${moduleId != undefined}" jstl-data="${modules[moduleId]}" jstl-data-var="module"> </jstl>
-	<div class="page-content" style="display: none;">
+	<jstl jstl-if="${moduleId == undefined}" jstl-data="${modules['home']}" jstl-data-var="module"> </jstl>
+
+
+
+	<!-- HEADER -->
+	<div id="header_wrap" class="outer">
+		<header class="inner">
+			<a id="forkme_banner" href="https://github.com/TwilightTitus/jquery.plugins">View on GitHub</a>
+
+			<h1 id="project_title">JQuery - Titus Lib</h1>
+			<h2 id="project_tagline">jquery, jstl, logging, template engine, javascript, template language</h2>
+
+			<section id="downloads">
+				<a class="zip_download_link" href="https://github.com/TwilightTitus/jquery.plugins/zipball/master">Download this project as a .zip file</a> <a class="tar_download_link" href="https://github.com/TwilightTitus/jquery.plugins/tarball/master">Download this project as a tar.gz file</a>
+			</section>
+		</header>
+	</div>
+
+
+	<div id="main_content_wrap" class="outer">
+
 		<nav class="navbar navbar-default">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 						<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" jstl-if="${module != undefined}">${module.title}</a> 
-					<a class="navbar-brand" jstl-if="${moduleId == undefined}">${header.title}</a>
+					<a class="navbar-brand" jstl-if="${module != undefined}">${module.title}</a> <a class="navbar-brand" jstl-if="${module.teaser != undefined}">[${module.teaser}]</a>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav navbar-right" jstl-foreach="${modules}" jstl-foreach-var="module" jstl-foreach-status="moduleStatus">
-						<li jstl-if="${moduleStatus.index == 0}"><a href="doc/index.html?page=0">HOME</a></li>
 						<li><a href="doc/index.html?module=${moduleStatus.key}&page=0">${module.title}</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-		<div jstl-if="${module != undefined}" jstl-data="${module.data}" jstl-data-mode="remote" jstl-data-var="moduleData" jstl-include="doc/templates/module.tpl.html"></div>
-		<footer>
-			<small>This documantation is rendered by the JSTL</small>
-		</footer>
+
+		<div class="page-content"  module="${module == undefined}">
+			<div jstl-if="${module != undefined}" jstl-data="${module.data}" jstl-data-mode="remote" jstl-data-var="moduleData" jstl-include="doc/templates/module.tpl.html"></div>
+			<footer>
+				<small>This documantation is rendered by the JSTL</small>
+			</footer>
+		</div>
 	</div>
 </body>
 </html>

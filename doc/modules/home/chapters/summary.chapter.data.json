@@ -1,0 +1,24 @@
+{
+	"title": "",
+	"text": "",
+	"articles": [
+		{
+			"title": "",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",
+					"content": [
+						"This javacript/JQuery library provides some useful features.",
+						"",
+						"you get a template language -&gt; <strong>J</strong>ava<strong>s</strong>cript <strong>T</strong>emplate <strong>L</strong>anguage - JSTL. This similar to Java Standard Tag Library",
+						"you get a logging system similar to log4j in java.",
+						"",
+						"",
+						"And all this for the client side of a web application."
+					]
+				}
+			]
+		}
+	]
+}
