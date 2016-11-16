@@ -2353,6 +2353,10 @@ de.titus.core.Namespace.create("de.titus.jstl.functions.TextContent", function()
 		var ignore = aElement.attr(processor.config.attributePrefix + "text-ignore");
 		
 		if (ignore != true || ignore != "true") {
+			
+			if(!aElement.is("pre"))
+				this.normalize(aElement[0]);
+			
 			aElement.contents().filter(function() {
 				return this.nodeType === 3 && this.textContent != undefined && this.textContent.trim() != "";
 			}).each(function() {
@@ -2371,6 +2375,23 @@ de.titus.core.Namespace.create("de.titus.jstl.functions.TextContent", function()
 		
 		return new de.titus.jstl.FunctionResult(true, true);
 	};
+	
+	de.titus.jstl.functions.TextContent.prototype.normalize = function(node) {
+		if (!node) {
+			return;
+		}
+		if (node.nodeType == 3) {
+			while (node.nextSibling && node.nextSibling.nodeType == 3) {
+				node.nodeValue += node.nextSibling.nodeValue;
+				node.parentNode.removeChild(node.nextSibling);
+			}
+		} else {
+			this.normalize(node.firstChild);
+		}
+		this.normalize(node.nextSibling);
+	}
+	
+	
 	de.titus.jstl.functions.TextContent.CONTENTTYPE = {};
 	de.titus.jstl.functions.TextContent.CONTENTTYPE["html"] = function(aNode, aText, aBaseElement, aProcessor, aDataContext) {
 		$(aNode).replaceWith($.parseHTML(aText));
@@ -2845,7 +2866,6 @@ de.titus.core.Namespace.create("de.titus.jstl.functions.Eventbind", function() {
 				events.onSuccess = this.config.onSuccess;
 			if (this.config.onFail)
 				events.onFail = this.config.onFail;
-			this.config.element.hide();
 			return this.internalComputeElement(this.config.element, this.config.data, events, true);
 		};
 		
@@ -3017,7 +3037,6 @@ de.titus.core.Namespace.create("de.titus.jstl.functions.Eventbind", function() {
 				}
 				
 				this.config.element.trigger(de.titus.jstl.Constants.EVENTS.onReady, this);
-				this.config.element.show();
 			}
 		};
 	});
