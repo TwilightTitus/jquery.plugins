@@ -1533,8 +1533,13 @@ de.titus.core.Namespace.create("de.titus.core.UUID", function() {
 			
 			var action = element.attr("event-action");
 			action = de.titus.core.EventBind.EXPRESSIONRESOLVER.resolveExpression(action, anEvent.data, undefined);
-			if (typeof action === "function")
-				action(anEvent, anEvent.data);
+			if (typeof action === "function"){
+				var args = Array.from(arguments);
+				if(args != undefined && args.length >= 1 && anEvent.data != undefined){
+					args.splice(1,0,anEvent.data);
+				}
+				action.apply(action, args);
+			}
 			
 			return !anEvent.isDefaultPrevented();
 		};
@@ -1906,27 +1911,40 @@ de.titus.core.Namespace.create("de.titus.logging.LoggerRegistry", function() {
 });
 de.titus.core.Namespace.create("de.titus.logging.ConsolenAppender", function() {
 	
-	de.titus.logging.ConsolenAppender = function(){
+	de.titus.logging.ConsolenAppender = function() {
 	};
 	
 	de.titus.logging.ConsolenAppender.prototype = new de.titus.logging.LogAppender();
 	de.titus.logging.ConsolenAppender.prototype.constructor = de.titus.logging.ConsolenAppender;
 	
-	de.titus.logging.ConsolenAppender.prototype.logMessage=  function(aMessage, anException, aLoggerName, aDate, aLogLevel){
+	de.titus.logging.ConsolenAppender.prototype.logMessage = function(aMessage, anException, aLoggerName, aDate, aLogLevel) {
+		if (de.titus.logging.LogLevel.NOLOG == aLogLevel)
+			return;
 		var log = "";
-		if(aDate)
+		if (aDate)
 			log += log = this.formatedDateString(aDate) + " ";
 		
 		log += "***" + aLogLevel.title + "*** " + aLoggerName + "";
 		
-		if(aMessage)
+		if (aMessage)
 			log += " -> " + aMessage;
-		if(anException)
+		if (anException)
 			log += ": " + anException;
 		
-		console.log(log);
+		if (de.titus.logging.LogLevel.ERROR == aLogLevel)
+			console.error == undefined ? console.error(log) : console.log(log);
+		else if (de.titus.logging.LogLevel.WARN == aLogLevel)
+			console.warn == undefined ? console.warn(log) : console.log(log);
+		else if (de.titus.logging.LogLevel.INFO == aLogLevel)
+			console.info == undefined ? console.info(log) : console.log(log);
+		else if (de.titus.logging.LogLevel.DEBUG == aLogLevel)
+			console.debug == undefined ? console.debug(log) : console.log(log);
+		else if (de.titus.logging.LogLevel.TRACE == aLogLevel)
+			console.trace == undefined ? console.trace(log) : console.log(log);
+		
 	};
-});de.titus.core.Namespace.create("de.titus.logging.HtmlAppender", function() {
+});
+de.titus.core.Namespace.create("de.titus.logging.HtmlAppender", function() {
 	
 	
 	
@@ -2021,6 +2039,7 @@ de.titus.core.Namespace.create("de.titus.logging.ConsolenAppender", function() {
 de.titus.core.Namespace.create("de.titus.jstl.Constants", function() {
 	de.titus.jstl.Constants = {};
 	de.titus.jstl.Constants.EVENTS = {};
+	de.titus.jstl.Constants.EVENTS.onStart = "jstl-on-start";
 	de.titus.jstl.Constants.EVENTS.onLoad = "jstl-on-load";
 	de.titus.jstl.Constants.EVENTS.onSuccess = "jstl-on-success";
 	de.titus.jstl.Constants.EVENTS.onFail = "jstl-on-fail";
@@ -2859,6 +2878,7 @@ de.titus.core.Namespace.create("de.titus.jstl.functions.Eventbind", function() {
 		};
 		
 		de.titus.jstl.Processor.prototype.internalComputeRoot = /* boolean */function() {
+			
 			var events = this.getEvents(this.config.element) || {};
 			if (this.config.onLoad)
 				events.onLoad = this.config.onLoad;
@@ -2866,6 +2886,8 @@ de.titus.core.Namespace.create("de.titus.jstl.functions.Eventbind", function() {
 				events.onSuccess = this.config.onSuccess;
 			if (this.config.onFail)
 				events.onFail = this.config.onFail;
+			
+			this.config.element.trigger(de.titus.jstl.Constants.EVENTS.onStart,[this.config.data, this ]);
 			return this.internalComputeElement(this.config.element, this.config.data, events, true);
 		};
 		
@@ -2883,8 +2905,8 @@ de.titus.core.Namespace.create("de.titus.jstl.functions.Eventbind", function() {
 			
 			if (theEvents.onLoad != undefined && typeof theEvents.onLoad === "function")
 				theEvents.onLoad(aElement, aDataContext, this);
-			aElement.trigger(de.titus.jstl.Constants.EVENTS.onLoad, aDataContext);
 			
+			aElement.trigger(de.titus.jstl.Constants.EVENTS.onLoad,[aDataContext, this ]);			
 			var processResult = true;
 			var result = this.internalExecuteFunction(aElement, dataContext);
 			if (result.processChilds) {

@@ -62,15 +62,20 @@
 					"type": "text",
 					"headline": "JSTL Events",
 					"content": [ 
-						"The JSTL provides events: \"jstl-on-load\", \"jstl-on-success\", \"jstl-on-ready\", \"jstl-on-fail\"",
+						"The JSTL provides events: \"jstl-on-start\", \"jstl-on-load\", \"jstl-on-success\", \"jstl-on-ready\", \"jstl-on-fail\"",
 						"",
 						"The events are catchable by jQuery."
 					]
 				},
 				{
 					"type": "text",
+					"headline": "jstl-on-start",
+					"content": "This event would be fired, only at the root element of processing."
+				},
+				{
+					"type": "text",
 					"headline": "jstl-on-load",
-					"content": "This event would be fired, if JSTL starts the templating process."
+					"content": "This event would be fired, if JSTL starts the templating process on each dom element."
 				},				
 				{
 					"type": "text",
@@ -86,6 +91,12 @@
 					"type": "text",
 					"headline": "jstl-on-fail",
 					"content": "This event would be fired, if JSTL detect an error."
+				},
+				{
+					"type": "code",
+					"codetype": "javascript",
+					"headline": "event listener signatur",
+					"content": "function(event, dataContext, jstlProcessor){}"
 				}
 			]
 		},

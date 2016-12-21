@@ -27,7 +27,7 @@
 				{
 					"type": "code",
 					"codetype": "javascript",
-					"content": "var eventhandler = function(event, data){}"
+					"content": "var eventhandler = function(event, data[, aditional data from jQuery event system]){}"
 				},
 				{
 					"type": "text",
