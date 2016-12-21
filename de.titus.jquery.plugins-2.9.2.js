@@ -1393,7 +1393,7 @@ de.titus.core.Namespace.create("de.titus.core.UUID", function() {
 		};
 		
 		de.titus.core.StringUtils.trimTextLength = function(aText, maxLength, theSettings) {
-			if (aText == undefined || aText !== "string" || aText == "")
+			if (aText == undefined || typeof aText !== "string" || aText == "")
 				return aText;
 			
 			var settings = $.extend({}, theSettings, de.titus.core.StringUtils.DEFAULTS.trimTextLength);
@@ -2449,7 +2449,7 @@ de.titus.core.Namespace.create("de.titus.jstl.functions.TextContent", function()
 		if (addAsHtml)
 			$(aNode).replaceWith($.parseHTML(text));
 		else
-			aNode.textContent = aText;
+			aNode.textContent = text;
 	};
 	de.titus.jstl.functions.TextContent.CONTENTTYPE["text/plain"] = de.titus.jstl.functions.TextContent.CONTENTTYPE["text"];
 });
