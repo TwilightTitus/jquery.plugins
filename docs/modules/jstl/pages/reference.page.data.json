@@ -19,7 +19,49 @@
 				{
 					"type": "code",
 					"codetype": "javascript",
-					"content": "$(document).ready(function(){\n\t$('[jstl-autorun]').each(function(){\n\t\t$(this).jstl();\n\t});\n});"
+					"content": [
+						"$(document).ready(function(){",
+						"\tvar settings = {",
+						"\t\tdata:{},//context data to processing",
+						"\t\tonLoad:function(){},",
+						"\t\tonSuccess:function(){},",
+						"\t\tonFail:function(){},",
+						"\t};",
+						"\t$('[jstl-autorun]').each(function(){",
+						"\t\t$(this).jstl(settings);// settings is optional",
+						"\t});",
+						"});"
+					]
+				},
+				{
+					"type": "text",
+					"headline": "jstl-load",
+					"content": "The processor would be evaluate the attribute value and execute the content!"
+				},
+				{
+					"type": "code",
+					"codetype": "html",
+					"content": "<[any tag] jstl-load=\"${expression}|javascript function\"></[any tag]>"
+				},
+				{
+					"type": "text",
+					"headline": "jstl-success",
+					"content": "The processor would be evaluate the attribute value and execute the content!"
+				},
+				{
+					"type": "code",
+					"codetype": "html",
+					"content": "<[any tag] jstl-success=\"${expression}|javascript function\"></[any tag]>"
+				},
+				{
+					"type": "text",
+					"headline": "jstl-fail",
+					"content": "The processor would be evaluate the attribute value and execute the content!"
+				},
+				{
+					"type": "code",
+					"codetype": "html",
+					"content": "<[any tag] jstl-fail=\"${expression}|javascript function\"></[any tag]>"
 				},
 				{
 					"type": "text",
@@ -158,7 +200,7 @@
 					"type": "code",
 					"codetype": "html",
 					"headline": "jstl-data sample",
-					"content": "<[any tag] jstl-data=\"[object|string|expression]\" jstl-data-mode=\"[direct|remote|url-parameter]\" jstl-data-var=\"[a variable name]\" jstl-data-options=\"[ajax request options]\"></[any tag]>"
+					"content": "<[any tag] jstl-data=\"[object|string|expression]\" jstl-data-mode=\"[direct|remote|url-parameter]\" jstl-data-var=\"[a variable name]\" jstl-data-options=\"[ajax request options]\" jstl-data-datatype=\"xml|json\"></[any tag]>"
 				},
 				{
 					"type": "text",
@@ -174,7 +216,7 @@
 					"headline": "jstl-data sample",
 					"content": [
 						"<!--\"jstl-data\" - Attribute samples as static url string-->",
-						"<[any tag] jstl-data=\"/url/to/json/data\" jstl-data-mode=\"remote\"></[any tag]>",
+						"<[any tag] jstl-data=\"/url/to/json/data\" jstl-data-mode=\"remote\" jstl-data-datatype=\"xml|json\"></[any tag]>",
 						"<!--\"jstl-data\" - Attribute samples as static string to recive a prameter value-->",
 						"<[any tag] jstl-data=\"my-html-parameter\" jstl-data-mode=\"url-parameter\"></[any tag]>",
 						"<!--\"jstl-data\" - Attribute samples as object-->",
@@ -207,6 +249,17 @@
 					"type": "text",
 					"headline": "\"jstl-data-options\" - Attribute (optional)",
 					"content": "The value must be an object. This object would be merged with the ajax request object from jquery. You are able to change all default values, without \"success\" and \"error\". Be carrful if you use this feature!"
+				},
+				{
+					"type": "text",
+					"headline": "\"jstl-data-datatype\" - Attribute (optional - only with jstl-data-mode=\"remote\")",
+					"content": "If jstl-data-datatype=\"xml\", then the xml would be converted to json! Only JSON can be processed"
+				},
+				{
+					"type": "button",
+					"text": "XML to JSON Converting",
+					"link": "index.html?module=core&page=3#converter",
+					"linktype": "relativ"
 				}
 			]
 		},		

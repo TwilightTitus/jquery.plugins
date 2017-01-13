@@ -17,6 +17,12 @@
 		"title": "Reference: Event Binding",
 		"teaser": "Decleratives event binding for JQuery events",
 		"data":"modules/core/chapters/eventbind.chapter.data.json"
+		},
+		{
+		"tag":"converter",
+		"title": "Reference: Data Converter",
+		"teaser": "A function lib to convert data. xml -> json",
+		"data":"modules/core/chapters/converter.chapter.data.json"
 		}
 	]
 }
