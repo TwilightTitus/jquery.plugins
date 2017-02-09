@@ -79,14 +79,14 @@
 					"content": "With \"jstl-ignore-childs\" you can contol if the childs of an element to be processed by jstl. The value of \"jstl-ignore-childs\" will be evaluated to a boolean. Is the value empty then is the value \"true\"!"
 				},
 				{
-					"type": "text",
-					"headline": "jstl-async - experimental",
-					"content": "\"jstl-async\" this attribute tells the processor to process the element later!"
-				},
-				{
 					"type": "code",
 					"codetype": "html",
 					"content": "<[any tag] jstl-ignore-childs=\"empty|true|false|${expression}\">[content]</[any tag]>"
+				},
+				{
+					"type": "text",
+					"headline": "jstl-async",
+					"content": "\"jstl-async\" this attribute tells the processor to process the element later! (experimental)"
 				},
 				{
 					"type": "text",
