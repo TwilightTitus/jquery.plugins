@@ -1,0 +1,5 @@
+<div class="panel panel-danger">
+	<div class="panel-heading" jstl-if="${content.headline != undefined && content.headline != ''}"><strong>${content.headline}</strong></div>
+	<div class="panel-body text-danger" jstl-text-prevent-format jstl-if="${typeof content.content === 'string'}">${content.content}</div>
+	<div class="panel-body text-danger" jstl-if="${typeof content.content !== 'string'}" jstl-foreach="${content.content}" jstl-foreach-var="text"><span jstl-text-prevent-format>${text}<span><br></div>
+</div>

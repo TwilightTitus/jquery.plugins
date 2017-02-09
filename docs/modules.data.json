@@ -16,6 +16,10 @@
 		"jstl": {
 			"title": "JSTL",
 			"data": "modules/jstl/pages.data.json"
+		},
+		"form": {
+			"title": "Form (alpha)",
+			"data": "modules/form/pages.data.json"
 		}
 	}
 }

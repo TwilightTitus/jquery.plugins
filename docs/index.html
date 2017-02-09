@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="libs/highlight/styles/mono-blue.css" />
 
 <script type="text/javascript" src="libs/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="libs/de.titus.jquery.plugins.2.11.0.min.js"></script>
+<script type="text/javascript" src="libs/de.titus.jquery.plugins.2.17.0.min.js"></script>
+
+<!-- script type="text/javascript" src="../dist/2.17.0/de.titus.jquery.plugins.2.17.0.min.js"></script -->
 <script type="text/javascript" src="libs/bootstrap.3.3.6.min.js"></script>
 <script type="text/javascript" src="libs/highlight/highlight.pack.js"></script>
 
@@ -59,7 +61,7 @@
 		</nav>
 
 		<div class="page-content"  module="${module == undefined}">
-			<div jstl-if="${module != undefined}" jstl-data="${module.data}" jstl-data-mode="remote" jstl-data-var="moduleData" jstl-include="templates/module.tpl.html"></div>
+			<div jstl-if="${module != undefined}" jstl-data="${module.data}" jstl-data-mode="remote" jstl-data-var="moduleData" jstl-include="templates/module.tpl.html" jstl-async=""></div>
 			<footer>
 				<small>This documantation is rendered by the JSTL</small>
 			</footer>

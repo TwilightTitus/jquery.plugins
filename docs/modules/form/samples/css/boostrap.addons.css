@@ -1,0 +1,29 @@
+[data-form-page] {
+	display: none;
+}
+
+div#log {
+	display: none;
+}
+
+div#log-container:hover #log {
+	display: block;
+}
+
+.data-form-invalid input, .data-form-invalid select, .data-form-invalid textarea
+	{
+	border-color: red;
+}
+
+[data-form-validation] {
+	display: none;
+}
+[data-form-validation].active{
+	display: block;
+}
+.form-state-submited {
+	
+}
+.text-danger.text-danger{
+	color: #a94442;
+}

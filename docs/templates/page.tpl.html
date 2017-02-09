@@ -3,13 +3,13 @@
 		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 			<div class="chapter-text">${pageData.text}</div>
 			<div class="articles" jstl-foreach="${pageData.articles}"
-				jstl-foreach-var="article" jstl-foreach-status="articleStatus">
+				jstl-foreach-var="article" jstl-foreach-status="articleStatus" jstl-async="" >
 				<article id="${article.tag}">
 					<h2>${article.title}</h2>
 					<h4>${article.teaser}</h4>
 					<div class="article-content" jstl-foreach="${article.content}"
-						jstl-foreach-var="content" jstl-foreach-status="contentStatus">
-						<div jstl-include="templates/${content.type}.content.tpl.html"></div>
+						jstl-foreach-var="content" jstl-foreach-status="contentStatus" >
+						<div jstl-include="templates/${content.type}.content.tpl.html" ></div>
 					</div>
 				</article>
 			</div>

@@ -1,0 +1,153 @@
+{
+	"text": "Summary of all functions",
+	"articles": [
+		{
+			"tag": "formular",
+			"title": "How to define a formular",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",
+					"headline": "",
+					"content": [
+						"To define a form, you need only the <b>\"data-form\"</b> marker attribute. The formular engine start automaticly.",
+						"",
+						"You can use several other attribute in combination with <b>\"data-form\"</b> to specify, how the formular works.",
+						"See below for more informations:"
+					]
+				},
+				{
+					"type": "code",
+					"contenttype": "html",
+					"headline": "\"data-form\"",
+					"content": [
+						"<form data-form=\"myForm\" data-form-init=\"[optional]\" data-form-submit=\"[optional - at form tag]\" data-form-cancel=\"[optional]\">",
+						"\tany content you want. To use form pages, fields, step panel and step control see the references below!",
+						"</form>"
+					]
+				},		
+				{
+					"type": "text",
+					"headline": "\"data-form\"",
+					"content": [
+						"With the <b>\"data-form\"</b> html tag property, you define the context of form engine.",
+						"It can be any tag. Best practice tags are <b>&lt;form&gt;</b> or <b>&lt;div&gt</b> as tag."
+					]
+				},		
+				{
+					"type": "text",
+					"headline": "\"data-form-init\"",
+					"content": [
+						"With this attribute, you can add a logic to load data for the form fields. The value can be",
+						"a javascript function, javascript variable or a json object. The content would be evaluate with the",
+						"expression language."						
+					]
+				},
+				{
+					"type": "code",
+					"contenttype": "html",
+					"headline": "",
+					"content": [
+						"<form data-form=\"myForm\" data-form-init=\"${startFunction}\"></form>"
+					]
+				},
+				{
+					"type": "code",
+					"contenttype": "javascript",
+					"headline": "The signature of \"data-form-init\" function is",
+					"content": [
+						"var startFunction = function([jQuery dom element], [formular object]);"
+					]
+				},
+				{
+					"type": "button",
+					"text": "expression language",
+					"link": "index.html?module=core&page=1#expression-language",
+					"linktype": "relativ"
+				},			
+				{
+					"type": "text",
+					"headline": "\"data-form-submit\"",
+					"content": [
+						"There you define function, that be called on form submit. If your use form tag, then",
+						"is this attribute optional. For any other tag is this a must!"
+					]
+				},
+				{
+					"type": "code",
+					"contenttype": "html",
+					"headline": "",
+					"content": [
+						"<form data-form=\"myForm\" action=\"\" data-form-submit=\"[optional - if the action attribute avalible]\"></form>",
+						"<div data-form=\"myForm\" data-form-submit=\"[required]\"></div>",
+						"<no-form-tag data-form=\"myForm\" data-form-submit=\"[required]\"></no-form-tag>"
+					]
+				},
+				{
+					"type": "code",
+					"contenttype": "javascript",
+					"headline": "The signature of \"data-form-init\" function is",
+					"content": [
+						"var startFunction = function([jQuery dom element], [formular object]);"
+					]
+				},			
+				{
+					"type": "attention",
+					"headline": "What do you know, about form submit processing!",
+					"content": [
+						"This form engine will not use the browser default form submit implemntation. If you use the",
+						"form tag with action attribute, then the engine would be send data with jQuery Ajax."
+					]
+				},
+				{
+					"type": "button",
+					"text": "expression language",
+					"link": "index.html?module=core&page=1#expression-language",
+					"linktype": "relativ"
+				},		
+				{
+					"type": "text",
+					"headline": "\"data-form-cancel\"",
+					"content": [
+						"currently not implemented"
+					]
+				}	
+			]
+		},
+		{
+			"tag": "page",
+			"title": "How to define a page",
+			"teaser": "",
+			"content": [
+			]
+		},
+		{
+			"tag": "fields",
+			"title": "How to define a Field",
+			"teaser": "",
+			"content": [
+			]
+		},
+		{
+			"tag": "steppanel",
+			"title": "How to define a step panel",
+			"teaser": "",
+			"content": [
+			]
+		},
+		{
+			"tag": "stepcontrol",
+			"title": "How to define the step controls",
+			"teaser": "",
+			"content": [
+			]
+		},
+		{
+			"tag": "custom-field",
+			"title": "How to make a custom field",
+			"teaser": "",
+			"content": [
+			]
+		}
+	]
+}

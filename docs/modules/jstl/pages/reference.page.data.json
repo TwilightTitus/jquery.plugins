@@ -79,6 +79,11 @@
 					"content": "With \"jstl-ignore-childs\" you can contol if the childs of an element to be processed by jstl. The value of \"jstl-ignore-childs\" will be evaluated to a boolean. Is the value empty then is the value \"true\"!"
 				},
 				{
+					"type": "text",
+					"headline": "jstl-async - experimental",
+					"content": "\"jstl-async\" this attribute tells the processor to process the element later!"
+				},
+				{
 					"type": "code",
 					"codetype": "html",
 					"content": "<[any tag] jstl-ignore-childs=\"empty|true|false|${expression}\">[content]</[any tag]>"
@@ -358,7 +363,7 @@
 					"codetype": "html",
 					"headline": "jstl-foreach sample",
 					"content": [
-						"<[any tag] jstl-foreach=\"[expression]\" jstl-foreach-var=\"string\" jstl-foreach-status=\"string\">",
+						"<[any tag] jstl-foreach=\"[expression]\" jstl-foreach-var=\"string\" jstl-foreach-status=\"string\" jstl-foreach-start-index=\"[number|expression]\" jstl-foreach-break-condition=\"[expression]\">",
 						"\t[any content]",
 						"</[any tag]>"
 					]
@@ -377,6 +382,16 @@
 					"type": "text",
 					"headline": "jstl-foreach-status - option (default is \"statusVar\")",
 					"content": "With \"jstl-foreach-status\" you can define your running variable for the iteration context! This is fully optional but helpful to get an better anderstanding of your template at a later time."
+				},
+				{
+					"type": "text",
+					"headline": "jstl-foreach-start-index - option (default is \"0\")",
+					"content": "With \"jstl-foreach-start-index\" set the first index at array iteration."
+				},
+				{
+					"type": "text",
+					"headline": "jstl-foreach-break-condition - optional",
+					"content": "With \"jstl-foreach-break-condition\" if the expression evaluated to \"true\" the iteration will be stopped"
 				},
 				{
 					"type": "code",
