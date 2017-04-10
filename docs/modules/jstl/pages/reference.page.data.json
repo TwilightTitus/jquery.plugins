@@ -363,9 +363,12 @@
 					"codetype": "html",
 					"headline": "jstl-foreach sample",
 					"content": [
-						"<[any tag] jstl-foreach=\"[expression]\" jstl-foreach-var=\"string\" jstl-foreach-status=\"string\" jstl-foreach-start-index=\"[number|expression]\" jstl-foreach-break-condition=\"[expression]\">",
-						"\t[any content]",
-						"</[any tag]>"
+						"<!-- Foreach on list -->",
+						"<[any tag] jstl-foreach=\"[expression]\" jstl-foreach-var=\"string\" jstl-foreach-status=\"string (optional)\" jstl-foreach-start-index=\"[number|expression] (optional)\" jstl-foreach-break-condition=\"[expression] (optional)\">[any content] </any>",
+						"<!-- Foreach on object -->",
+						"<[any tag] jstl-foreach=\"[expression]\" jstl-foreach-var=\"string\" jstl-foreach-status=\"string (optional)\" jstl-foreach-break-condition=\"[expression] (optional)\">[any content]</any>",
+						"<!-- Foreach count -->",
+						"<[any tag] jstl-foreach=\"[must be empty]\" jstl-foreach-status=\"string (optional)\" jstl-foreach-start-index=\"[number|expression] (optional)\" jstl-foreach-count=\"[number|expression]\" jstl-foreach-step=\"[number|expression] (optional)\">[any content] </any>"
 					]
 				},
 				{

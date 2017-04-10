@@ -1,3 +1,8 @@
+jstl{
+	visibility: hidden;
+	display: none;
+}
+
 .page-content {
 	padding: 1rem;
 }
@@ -114,4 +119,8 @@
 	background: #f2f2f2;
 	border-top: 1px solid #111;
 	border-bottom: 1px solid #111;
+}
+
+.jstl-running {
+	display: none;
 }
