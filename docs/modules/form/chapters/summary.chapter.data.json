@@ -20,7 +20,7 @@
 					"type": "iframe",
 					"headline": "a form sample",
 					"src": "modules/form/samples/user.reg.sample.html",
-					"height": 500
+					"height": 1000
 				}
 			]
 		}
