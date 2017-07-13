@@ -8,17 +8,17 @@
 			"content": [
 				{
 					"type": "text",
-					"content": ["Client side/ browser side form engine!"
+					"content": ["Client side/ browser side formular engine!"
 					]
 				},
 				{
 					"type": "attention",
-					"content": ["The form engine is seperated from the jstl and currently not included into \"Titus Lib\" package"
+					"content": ["The formular engine is seperated from the jstl and currently not included into \"Titus Lib\" package"
 					]
 				},
 				{
 					"type": "iframe",
-					"headline": "a form sample",
+					"headline": "This is a example formular for a user registration",
 					"src": "modules/form/samples/user.reg.sample.html",
 					"height": 1000
 				}
