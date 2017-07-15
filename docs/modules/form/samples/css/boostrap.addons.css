@@ -36,7 +36,11 @@
 	color: #a94442;
 }
 
-.no-value[data-form-field][data-form-required] .glyphicon-ok.form-control-feedback, .invalid[data-form-field] .glyphicon-ok.form-control-feedback {
+.no-value[data-form-field][data-form-required] .glyphicon-ok.form-control-feedback {
+	display: none;
+}
+
+.invalid[data-form-field] .glyphicon-ok.form-control-feedback {
 	display: none;
 }
 
