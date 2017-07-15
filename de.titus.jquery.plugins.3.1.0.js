@@ -14,7 +14,7 @@
 var de = de || {};
 de.titus = de.titus || {};
 de.titus.core = de.titus.core || {
-	Version : "1.8.4"
+	Version : "1.8.8"
 };
 if (de.titus.core.Namespace == undefined) {
 	de.titus.core.Namespace = {};
@@ -40,37 +40,44 @@ if (de.titus.core.Namespace == undefined) {
 		aFunction();
 	};
 };de.titus.core.Namespace.create("de.titus.core.SpecialFunctions", function() {
-	
+
 	var SpecialFunctions = de.titus.core.SpecialFunctions = {
+	    DEVMODE : location.search ? (/.*devmode=true.*/ig).test(location.search) : false,
+	    STATEMENTS : {},
 	    doEval : function(aStatement, aContext, aCallback) {
 		    if (aCallback)
-		    	SpecialFunctions.doEvalWithContext(aStatement, (aContext || {}), undefined, aCallback);
+			    SpecialFunctions.doEvalWithContext(aStatement, (aContext || {}), undefined, aCallback);
 		    else {
 			    if (typeof aStatement !== "string")
 				    return aStatement;
 			    else {
-				    var result = undefined;
 				    var runContext = aContext || {};
+				    if (runContext["$$$$___STATEMENT___VALUE___$$$___TEXT___$$$$"] !== undefined)
+					    return undefined;
+
+				    var $$$$___STATEMENT___VALUE___$$$___TEXT___$$$$ = aStatement;
 				    with (runContext) {
 					    try {
-						    eval("result = " + aStatement + ";");
+						    return eval("(function(){ return " + $$$$___STATEMENT___VALUE___$$$___TEXT___$$$$ + ";})()");
 					    } catch (e) {
-						    if (!console)
-							    return;
-						    else if (console.error)
-							    console.error("de.titus.core.SpecialFunctions.doEval ***Error*** expression: " + aStatement + ": ", e);
-						    else if (console.log)
-							    console.log("de.titus.core.SpecialFunctions.doEval ***Error*** expression: " + aStatement + ": ", e);
-						    return undefined;
+					    	if(SpecialFunctions.DEVMODE){					    		
+					    		console.log("----------------------\n",
+					    		"doEval()\n",	
+					    		"statement: \"" + aStatement + "\"\n",
+					    		"context: \"" + (aContext ? JSON.stringify(aContext) : "{}") + "\"\n",
+					    		"callback: \"" + aCallback + "\"\n",
+					    		"error: ", e, "\n",
+					    		"----------------------");
+					    	}
+					    	throw e;
 					    }
 				    }
-				    return result;
 			    }
-			    
+
 			    return undefined;
 		    }
 	    },
-	    
+
 	    /**
 		 * 
 		 * @param aStatement
@@ -85,7 +92,7 @@ if (de.titus.core.Namespace == undefined) {
 				    var result = SpecialFunctions.doEvalWithContext(aStatement, aContext, aDefault, undefined);
 				    aCallback(result, aContext);
 			    }, 1);
-			    
+
 		    } else
 			    try {
 				    var result = SpecialFunctions.doEval(aStatement, aContext);
@@ -97,46 +104,42 @@ if (de.titus.core.Namespace == undefined) {
 			    }
 	    }
 	};
-	
+
 });
 (function($) {
-	de.titus.core.Namespace.create("de.titus.core.jquery.Components",
-			function() {
-				var Components = de.titus.core.jquery.Components = {};
-				Components.asComponent = function(aName, aConstructor) {
-					$.fn[Components.__buildFunctionName(aName)] = function(
-							aData) {
-						return Components.__createInstance(this, aName,
-								aConstructor, aData);
-					};
-				};
+	de.titus.core.Namespace.create("de.titus.core.jquery.Components", function() {
+		var Components = de.titus.core.jquery.Components = {};
+		Components.asComponent = function(aName, aConstructor) {
+			$.fn[Components.__buildFunctionName(aName)] = function(aData) {
+				return Components.__createInstance(this, aName, aConstructor, aData);
+			};
+		};
 
-				Components.__buildFunctionName = function(aName) {
-					return aName.replace(/\./g, "_");
-				};
+		Components.__buildFunctionName = function(aName) {
+			return aName.replace(/\./g, "_");
+		};
 
-				Components.__createInstance = function(aElement, aName,
-						aConstructor, aData) {
-					if (aElement.length == 0)
-						return;
-					else if (aElement.length > 1) {
-						var result = [];
-						aElement.each(function() {
-							result.push($(this).de_titus_Typeahead(aData));
-						});
-						return result;
-					} else {
-						var component = aElement.data(aName);
-						if (!component) {
-							component = new aConstructor(aElement, aData);
-							aElement.data(aName, component);
-						}
-
-						return component;
-					}
+		Components.__createInstance = function(aElement, aName, aConstructor, aData) {
+			if (aElement.length == 0)
+				return;
+			else if (aElement.length > 1) {
+				var result = [];
+				aElement.each(function() {
+					result.push(Components.__createInstance($(this), aName, aConstructor, aData));
+				});
+				return result;
+			} else {
+				var component = aElement.data(aName);
+				if (!component) {
+					component = new aConstructor(aElement, aData);
+					aElement.data(aName, component);
 				}
 
-			});
+				return component;
+			}
+		}
+
+	});
 })($);
 (function($) {
 	$.fn.tagName = $.fn.tagName || function() {
@@ -479,16 +482,20 @@ de.titus.core.Namespace.create("de.titus.core.ExpressionResolver", function() {
 			}
 		};
 		
+		URL.prototype.getMarkerString = function() {
+			if (this.getMarker() != undefined)
+				return "#" + this.getMarker();
+			
+			return "";
+		};
+		
 		URL.prototype.asString = function() {
 			var result = this.getProtocol() + "://" + this.getDomain() + ":" + this.getPort();
 			
 			if (this.getPath() != undefined)
 				result = result + this.getPath();
 			
-			if (this.getMarker() != undefined)
-				result = result + "#" + this.getMarker();
-			
-			result = result + this.getQueryString();
+			result = result + this.getQueryString() + this.getMarkerString();
 			
 			return result;
 		};
@@ -966,7 +973,7 @@ de.titus.core.Namespace.create("de.titus.core.UUID", function() {
  */
 
 de.titus.core.Namespace.create("de.titus.logging.Version", function() {
-	de.titus.logging.Version = "2.0.0";
+	de.titus.logging.Version = "2.1.0";
 });de.titus.core.Namespace.create("de.titus.logging.LogLevel", function() {
 	
 	var LogLevel = de.titus.logging.LogLevel = function(aOrder, aTitle){
@@ -1280,7 +1287,8 @@ de.titus.core.Namespace.create("de.titus.logging.LoggerRegistry", function() {
 });
 de.titus.core.Namespace.create("de.titus.logging.ConsolenAppender", function() {
 	
-	var ConsolenAppender = de.titus.logging.ConsolenAppender = function() {};
+	var ConsolenAppender = de.titus.logging.ConsolenAppender = function() {
+	};
 	
 	ConsolenAppender.prototype = new de.titus.logging.LogAppender();
 	ConsolenAppender.prototype.constructor = ConsolenAppender;
@@ -1288,27 +1296,37 @@ de.titus.core.Namespace.create("de.titus.logging.ConsolenAppender", function() {
 	ConsolenAppender.prototype.logMessage = function(aMessage, anException, aLoggerName, aDate, aLogLevel) {
 		if (de.titus.logging.LogLevel.NOLOG == aLogLevel)
 			return;
-		var log = "";
+		var log = [];
 		if (aDate)
-			log += log = this.formatedDateString(aDate) + " ";
+			Array.prototype.push.apply(log, [
+			        this.formatedDateString(aDate), " "
+			]);
 		
-		log += "***" + aLogLevel.title + "*** " + aLoggerName + "";
-		
-		if (aMessage)
-			log += " -> " + aMessage;
+		Array.prototype.push.apply(log, [
+		        "***", aLogLevel.title, "*** ", aLoggerName
+		]);
+		if (aMessage) {
+			log.push(" -> ");
+			if (Array.isArray(aMessage))
+				Array.prototype.push.apply(log, aMessage);
+			else
+				log.push(aMessage);
+		}
 		if (anException)
-			log += ": " + anException;
+			Array.prototype.push.apply(log, [
+			        ": ", anException
+			]);
 		
 		if (de.titus.logging.LogLevel.ERROR == aLogLevel)
-			console.error == undefined ? console.error(log) : console.log(log);
+			console.error == undefined ? console.error.apply(console,log) : console.log.apply(console,log);
 		else if (de.titus.logging.LogLevel.WARN == aLogLevel)
-			console.warn == undefined ? console.warn(log) : console.log(log);
+			console.warn == undefined ? console.warn.apply(console,log) : console.log.apply(console,log);
 		else if (de.titus.logging.LogLevel.INFO == aLogLevel)
-			console.info == undefined ? console.info(log) : console.log(log);
+			console.info == undefined ? console.info.apply(console,log) : console.log.apply(console,log);
 		else if (de.titus.logging.LogLevel.DEBUG == aLogLevel)
-			console.debug == undefined ? console.debug(log) : console.log(log);
+			console.debug == undefined ? console.debug.apply(console,log) : console.log.apply(console,log);
 		else if (de.titus.logging.LogLevel.TRACE == aLogLevel)
-			console.trace == undefined ? console.trace(log) : console.log(log);
+			console.trace == undefined ? console.trace.apply(console,log) : console.log.apply(console,log);
 		
 	};
 });
@@ -1406,7 +1424,7 @@ de.titus.core.Namespace.create("de.titus.logging.MemoryAppender", function() {
 
 (function($){
 	de.titus.core.Namespace.create("de.titus.jstl", function() {
-		de.titus.jstl.Version = "3.0.0";
+		de.titus.jstl.Version = "3.0.1";
 	});
 })($);
 de.titus.core.Namespace.create("de.titus.jstl.Constants", function() {
@@ -2568,22 +2586,21 @@ de.titus.core.Namespace.create("de.titus.jstl.javascript.polyfills", function() 
 			} else {
 				var processor = this.data("de.titus.jstl.Processor");
 				if (!processor) {
-				    	var data = aData || {};
+					var data = $.extend(true, {}, aData);
 					processor = new de.titus.jstl.Processor(this, data.data, data.callback || data.success);
 					this.data("de.titus.jstl.Processor", processor);
-				}
-				else if(aData){
-				    var data = aData || {};
-				    if(data.data)
-					processor.context = data.data;
-				    if(typeof data.callback === 'function')
-					processor.callback = data.callback
+				} else if (aData) {
+					var data = $.extend(true, {}, aData);
+					if (data.data)
+						processor.context = data.data;
+					if (typeof data.callback === 'function')
+						processor.callback = data.callback
 				}
 				processor.compute();
 				return processor;
 			}
 		};
-		
+
 		$.fn.jstlAsync = function(aData) {
 			if (this.length == 0)
 				return;
@@ -2596,11 +2613,11 @@ de.titus.core.Namespace.create("de.titus.jstl.javascript.polyfills", function() 
 				return this;
 			}
 		};
-		
+
 		$(document).ready(function() {
 			$("[jstl-autorun]").jstlAsync();
 		});
-		
+
 	});
 }(jQuery));
 
