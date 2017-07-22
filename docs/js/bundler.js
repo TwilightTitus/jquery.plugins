@@ -38,9 +38,10 @@
 
 			var jsType = $(aEvent.currentTarget).attr("data-js-type");
 			var codes = [ "js/license-header.js" ];
-			this.element.find("[data-module]:checked").each(function() {
+			this.element.find("[data-module]").each(function() {
 				var element = $(this);
-				codes.push(element.attr("data-module-" + jsType));
+				if (element.is(":checked"))
+					codes.push(element.attr("data-module-" + jsType));
 				element.prop("disabled", true);
 			});
 
