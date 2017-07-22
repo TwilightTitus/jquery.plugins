@@ -93,7 +93,7 @@
 					"codetype": "javascript",
 					"headline": "Simple example",
 					"content": [
-						"var dataContext = {name: 'John'}",
+						"var dataContext = {name: 'John'};",
 						"var expressionResolver = new de.titus.core.ExpressionResolver();",
 						"console.log(expressionResolver.resolveText(\"The name is: ${name}\", dataContext , undefined)); //output: The name is: John",
 						"console.log(expressionResolver.resolveText(\"${document.location.href}\", dataContext , undefined)); //output: URL of the current HTML Page",

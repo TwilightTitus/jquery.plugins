@@ -1,39 +1,14 @@
-<div class="container-fluid module-page-content">
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-			<div class="chapter-text">${pageData.text}</div>
-			<div class="articles" jstl-foreach="${pageData.articles}"
-				jstl-foreach-var="article" jstl-foreach-status="articleStatus" jstl-async="" >
-				<article id="${article.tag}">
-					<h2>${article.title}</h2>
-					<h4>${article.teaser}</h4>
-					<div class="article-content" jstl-foreach="${article.content}"
-						jstl-foreach-var="content" jstl-foreach-status="contentStatus" >
-						<div jstl-include="templates/${content.type}.content.tpl.html" ></div>
-					</div>
-				</article>
-			</div>
+<h1>${page.title}</h1>
+<h1>
+	<small>${page.teaser}</small>
+</h1>
+<div class="chapter-text">${pageData.text}</div>
+<div class="articles" jstl-foreach="${pageData.articles}" jstl-foreach-var="article" jstl-foreach-status="articleStatus" jstl-async="">
+	<article id="${article.tag}">
+		<h2>${article.title}</h2>
+		<h4>${article.teaser}</h4>
+		<div class="article-content" jstl-foreach="${article.content}" jstl-foreach-var="content" jstl-foreach-status="contentStatus">
+			<div jstl-include="templates/${content.type}.content.tpl.html"></div>
 		</div>
-		<nav class="hidden-xs hidden-sm col-md-3 col-lg-3">
-			<div >
-				<div>Pages</div>
-				<ul class="nav nav-pills nav-stacked navbar-page"
-					jstl-foreach="${moduleData.pages}" jstl-foreach-var="page"
-					jstl-foreach-status="pageStatus">
-					<li jstl-if="${pageStatus.index != pageNumber}"><a
-						href="index.html?module=${moduleId}&page=${pageStatus.index}">${page.title}</a></li>
-					<li jstl-if="${pageStatus.index == pageNumber}"><a
-						class="activ">${page.title}</a>
-						<ul
-							jstl-if="${pageData.articles != undefined && pageData.articles.length != 0}"
-							class="nav nav-pills nav-stacked navbar-article"
-							jstl-foreach="${pageData.articles}" jstl-foreach-var="article"
-							jstl-foreach-status="articleStatus">
-							<li><a
-								href="index.html?module=${moduleId}&page=${pageStatus.index}#${article.tag}">${article.title}</a></li>
-						</ul></li>
-				</ul>
-			</div>
-		</nav>
-	</div>
+	</article>
 </div>

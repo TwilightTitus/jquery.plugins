@@ -124,3 +124,18 @@ jstl{
 .jstl-running {
 	display: none;
 }
+
+.downloads .download { margin-right: 1rem;}
+
+.module-bundler.state-waiting .loader-container, .module-bundler.state-finished .loader-container {
+	display: none;	
+}
+.module-bundler.state-bundling .module-bundler-actions, .module-bundler.state-finished .module-bundler-actions,
+/*.module-bundler.state-bundling .module-selection, .module-bundler.state-finished .module-selection,*/
+.module-bundler.state-no-selection .module-bundler-actions,
+.module-bundler.state-waiting .module-bundler-result, .module-bundler.state-bundling .module-bundler-result{
+	display: none;	
+}
+
+
+

@@ -2,24 +2,19 @@
 	"modules": {
 		"home": {
 			"title": "Home",
-			"teaser":"Documentation for de.titus.jquery.plugins",
-			"data": "modules/home/pages.data.json"
+			"teaser":"Home de.titus.jquery.plugins"
 		},
 		"core": {
-			"title": "de.titus.core",
-			"data": "modules/core/pages.data.json"
+			"title": "Core"
 		},
 		"logging": {
-			"title": "logging",
-			"data": "modules/logging/pages.data.json"
+			"title": "Logging"
 		},
 		"jstl": {
-			"title": "JSTL",
-			"data": "modules/jstl/pages.data.json"
+			"title": "JSTL"
 		},
 		"form": {
-			"title": "Form (alpha)",
-			"data": "modules/form/pages.data.json"
+			"title": "Form (beta)"
 		}
 	}
 }

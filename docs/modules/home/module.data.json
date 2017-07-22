@@ -1,9 +1,23 @@
 {
-	"title": "",
+	"type" : "bundle",
+	"versions": {
+		"release" : "3.2.0"
+	},
+	"bundle":{
+		"modules": {
+			"core":"",
+			"logging":"",
+			"jstl":"",
+			"form":""
+		}
+	},
+	"title": "Bundle",
+	"teaser": "",
 	"text": "",
 	"articles": [
 		{
-			"title": "",
+			"tag": "intro",
+			"title": "Introduction",
 			"teaser": "",
 			"content": [
 				{

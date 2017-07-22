@@ -1,0 +1,21 @@
+{
+	"type" : "module",
+	"versions": {
+		"release" : "3.1.0"
+	},
+	"dependencies" : "core, logging",
+	"js-file":"https://raw.githubusercontent.com/TwilightTitus/js-lib/master/de.titus.jstl/dist/3.1.0/de.titus.jstl.3.1.0.js",
+	"min-js-file":"https://raw.githubusercontent.com/TwilightTitus/js-lib/master/de.titus.jstl/dist/3.1.0/de.titus.jstl.3.1.0.min.js",
+	"pages": [
+		{
+			"tag":"quick-start",
+			"title": "Quick Start",
+			"teaser": "It's simple to start make pages with JSTL."
+		},
+		{
+			"tag":"reference",
+			"title": "Reference",
+			"teaser": "List of all JSTL Features and how to use there."
+		}
+	]
+}

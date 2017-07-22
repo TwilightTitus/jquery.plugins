@@ -1,0 +1,29 @@
+<div jstl-if="${moduleData['js-file'] != undefined || moduleData['min-js-file']  != undefined}">
+	<div>Downloads</div>
+	<div class="downloads">
+		<a class="label label-primary download" href="${moduleData['js-file']}" target="_blank" jstl-if="${moduleData['js-file'] != undefined}">
+			js
+			<span class="glyphicon glyphicon-download"></span>
+		</a>
+		<a class="label label-success download" href="${moduleData['min-js-file']}" target="_blank" jstl-if="${moduleData['min-js-file'] != undefined}">
+			min.js
+			<span class="glyphicon glyphicon-download"></span>
+		</a>
+	</div>
+</div>
+<div class="hidden-xs hidden-sm">
+	<div>Pages</div>
+	<ul class="nav nav-pills nav-stacked navbar-page" jstl-foreach="${moduleData.pages}" jstl-foreach-var="page" jstl-foreach-status="pageStatus">
+		<li jstl-if="${pageStatus.index != pageNumber}">
+			<a href="index.html?module=${moduleId}&page=${pageStatus.index}">${page.title}</a>
+		</li>
+		<li jstl-if="${pageStatus.index == pageNumber}">
+			<a class="activ">${page.title}</a>
+			<ul jstl-if="${pageData.articles != undefined && pageData.articles.length != 0}" class="nav nav-pills nav-stacked navbar-article" jstl-foreach="${pageData.articles}" jstl-foreach-var="article" jstl-foreach-status="articleStatus">
+				<li>
+					<a href="index.html?module=${moduleId}&page=${pageStatus.index}#${article.tag}">${article.title}</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>

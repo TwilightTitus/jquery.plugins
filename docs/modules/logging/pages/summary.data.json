@@ -3,6 +3,7 @@
 	"text": "",
 	"articles": [
 		{
+			"tag" : "what-is-logging",
 			"title": "What is logging?",
 			"teaser": "description ist needed!",
 			"content": [

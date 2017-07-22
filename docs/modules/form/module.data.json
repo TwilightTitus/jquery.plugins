@@ -1,0 +1,21 @@
+{
+	"type" : "module",
+	"versions": {
+		"release" : "0.7.0-beta"
+	},
+	"dependencies" : "core, logging",
+	"js-file":"https://raw.githubusercontent.com/TwilightTitus/js-lib/master/de.titus.form/dist/0.7.0-beta/de.titus.form-0.7.0-beta.js",
+	"min-js-file":"https://raw.githubusercontent.com/TwilightTitus/js-lib/master/de.titus.form/dist/0.7.0-beta/de.titus.form-0.7.0-beta.min.js",
+	"pages": [
+		{
+		"tag":"summary",
+		"title": "Starting",
+		"teaser": "You make html, we make logic. Simple to use, simple to extends, simple to design!"
+		},
+		{
+		"tag":"reference",
+		"title": "Reference",
+		"teaser": "How to use it!"
+		}
+	]
+}

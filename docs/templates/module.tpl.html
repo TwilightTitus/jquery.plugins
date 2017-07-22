@@ -1,12 +1,13 @@
 <div jstl-if="${moduleData.pages != undefined && moduleData.pages.length > pageNumber}">
 	<jstl jstl-data="${moduleData.pages[pageNumber]}" jstl-data-var="page"></jstl>
-	<jstl jstl-data="${page.data}" jstl-data-mode="remote" jstl-data-var="pageData"></jstl>
-	<h1>${page.title}</h1>
-	<h1>
-		<small>${page.teaser}</small>
-	</h1>
-	<div jstl-include="templates/page.tpl.html"></div>
+	<jstl jstl-data="modules/${moduleId}/pages/${page.tag}.data.json" jstl-data-mode="remote" jstl-data-var="pageData"></jstl>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" jstl-include="templates/page.tpl.html"></div>
+		<nav class="col-md-3 col-lg-3" jstl-include="templates/sidenav.tpl.html"></nav>
+	</div>
 	<div>
-		<a href="index.html?module=${moduleId}&page=${pageNumber - 1}" jstl-if="${pageNumber > 0}">prev</a> <span>${page.title}</span> <a href="index.html?module=${moduleId}&page=${pageNumber + 1}" jstl-if="${moduleData.pages.length > (pageNumber + 1)}">next</a>
+		<a href="index.html?module=${moduleId}&page=${pageNumber - 1}" jstl-if="${pageNumber > 0}">prev</a>
+		<span>${page.title}</span>
+		<a href="index.html?module=${moduleId}&page=${pageNumber + 1}" jstl-if="${moduleData.pages.length > (pageNumber + 1)}">next</a>
 	</div>
 </div>

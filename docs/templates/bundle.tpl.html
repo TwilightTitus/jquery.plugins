@@ -1,0 +1,72 @@
+<div class="bundle">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+			<h1>${moduleData.title}</h1>
+			<h1>
+				<small>${moduleData.teaser}</small>
+			</h1>
+			<div class="chapter-text">${moduleData.text}</div>
+			<div class="articles" jstl-foreach="${moduleData.articles}" jstl-foreach-var="article" jstl-foreach-status="articleStatus" jstl-async="">
+				<article id="${article.tag}">
+					<h2>${article.title}</h2>
+					<h4>${article.teaser}</h4>
+					<div class="article-content" jstl-foreach="${article.content}" jstl-foreach-var="content" jstl-foreach-status="contentStatus">
+						<div jstl-include="templates/${content.type}.content.tpl.html"></div>
+					</div>
+				</article>
+			</div>
+		</div>
+		<div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+			<div class="module-bundler state-waiting state-no-selection">
+				<div>Modules</div>
+				<div class="module-selection" jstl-foreach="${moduleData.bundle.modules}" jstl-foreach-var="module" jstl-foreach-status="moduleStatus" jstl-eventbind="" event-type="change" event-action="jQuery('.module-bundler').de_titus_js_Bundler().doHandleDownloadButtons()" event-prevent-default="">
+					<jstl jstl-data="modules/${moduleStatus.key}/module.data.json" jstl-data-mode="remote" jstl-data-var="moduleData"></jstl>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" data-module="${moduleStatus.key}" data-module-dependencies="${moduleData.dependencies}" data-module-js="${moduleData['js-file']}" data-module-minjs="${moduleData['min-js-file']}" jstl-eventbind="" event-type="change click" event-action="jQuery('.module-bundler').de_titus_js_Bundler().doHandleDependencies()" />
+							${modules[moduleStatus.key].title}
+						</label>
+					</div>
+				</div>
+				<div class="module-bundler-actions downloads">
+					<a class="label label-primary download" data-js-type="js" href="#" jstl-eventbind="" event-type="click" event-action="jQuery('.module-bundler').de_titus_js_Bundler().doBundle()" event-prevent-default="">
+						build .js
+						<span class="glyphicon glyphicon-download"></span>
+					</a>
+					<a class="label label-success download" data-js-type="minjs" href="#" jstl-eventbind="" event-type="click" event-action="jQuery('.module-bundler').de_titus_js_Bundler().doBundle()" event-prevent-default="">
+						build min.js
+						<span class="glyphicon glyphicon-download"></span>
+					</a>
+				</div>
+				<div class="loader-container module-bundler-loader">
+					<div class="loader">
+						<span class="dot dot_1"></span>
+						<span class="dot dot_2"></span>
+						<span class="dot dot_3"></span>
+						<span class="dot dot_4"></span>						
+					</div>
+				</div>
+				<div class="module-bundler-result">
+					<a class="label label-primary download" href="">
+						download bundle
+						<span class="glyphicon glyphicon-download"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div jstl-if="${moduleData.pages != undefined && moduleData.pages.length > pageNumber}">
+	<jstl jstl-data="${moduleData.pages[pageNumber]}" jstl-data-var="page"></jstl>
+	<jstl jstl-data="modules/${moduleId}/pages/${page.tag}.data.json" jstl-data-mode="remote" jstl-data-var="pageData"></jstl>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" jstl-include="templates/page.tpl.html"></div>
+		<nav class="col-md-3 col-lg-3" jstl-include="templates/sidenav.tpl.html"></nav>
+	</div>
+	<div>
+		<a href="index.html?module=${moduleId}&page=${pageNumber - 1}" jstl-if="${pageNumber > 0}">prev</a>
+		<span>${page.title}</span>
+		<a href="index.html?module=${moduleId}&page=${pageNumber + 1}" jstl-if="${moduleData.pages.length > (pageNumber + 1)}">next</a>
+	</div>
+</div>
