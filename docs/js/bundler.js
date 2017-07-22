@@ -37,7 +37,7 @@
 			this.element.removeClass("state-waiting").addClass("state-bundling");
 
 			var jsType = $(aEvent.currentTarget).attr("data-js-type");
-			var codes = [ "js/licence-header.js" ];
+			var codes = [ "js/license-header.js" ];
 			this.element.find("[data-module]:checked").each(function() {
 				var element = $(this);
 				codes.push(element.attr("data-module-" + jsType));
