@@ -20,11 +20,12 @@
 	<jstl jstl-data="${modules[moduleId]}" jstl-data-var="module"></jstl>
 	<jstl jstl-data="modules/${moduleId}/module.data.json" jstl-data-mode="remote" jstl-data-var="moduleData"></jstl>
 
-	<!-- div>pagenumber: ${pageNumber}</div>
-	<div>moduleId: ${moduleId}</div>
-	<div>module: ${JSON.stringify(module)}</div>
-	<div>module: ${JSON.stringify(moduleData)}</div-->
-
+	<div style="display: none;">
+		<div>pagenumber: ${pageNumber}</div>
+		<div>moduleId: ${moduleId}</div>
+		<div>module: ${JSON.stringify(module)}</div>
+		<div>module: ${JSON.stringify(moduleData)}</div>
+	</div>
 	<!-- HEADER -->
 	<div id="header_wrap" class="outer">
 		<header class="inner">
