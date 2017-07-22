@@ -37,7 +37,7 @@
 			this.element.removeClass("state-waiting").addClass("state-bundling");
 
 			var jsType = $(aEvent.currentTarget).attr("data-js-type");
-			var codes = [];
+			var codes = [ "js/licence-header.js" ];
 			this.element.find("[data-module]:checked").each(function() {
 				var element = $(this);
 				codes.push(element.attr("data-module-" + jsType));
@@ -47,7 +47,6 @@
 			var filename = "de.titus.bundle" + (jsType == "js" ? ".js" : ".min.js");
 			var concat = function(aCodes, aBundleCode, aCallback, aResponse) {
 				if (aResponse) {
-					console.log(aResponse);
 					aBundleCode += aResponse;
 				}
 				if (aCodes.length > 0) {
@@ -58,7 +57,6 @@
 				} else
 					aCallback(aBundleCode);
 			};
-
 			concat(codes, "", Bundler.prototype.__generateDownloadLink.bind(this, filename));
 		};
 
