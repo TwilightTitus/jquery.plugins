@@ -14,7 +14,7 @@
 
 </head>
 <body jstl-data="modules.data.json" jstl-data-mode="remote" jstl-autorun>
-	<jstl jstl-data="module" jstl-data-mode="url-parameter" jstl-data-var="moduleId" jstl-data-default="'bundle'"></jstl>
+	<jstl jstl-data="module" jstl-data-mode="url-parameter" jstl-data-var="moduleId" jstl-data-default="'home'"></jstl>
 	<jstl jstl-data="page" jstl-data-mode="url-parameter" jstl-data-var="pageNumber" jstl-data-default="'0'"></jstl>
 	<jstl jstl-data="${parseInt(pageNumber)}" jstl-data-var="pageNumber"></jstl>
 	<jstl jstl-data="${modules[moduleId]}" jstl-data-var="module"></jstl>
