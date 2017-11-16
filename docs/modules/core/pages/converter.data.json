@@ -1,0 +1,17 @@
+{
+	"text": "",
+	"articles": [
+		{
+			"tag": "converter",
+			"title": "Converter",
+			"teaser": "",
+			"content": [				
+				{
+					"type": "code",
+					"codetype": "javascript",
+					"content": "de.titus.core.Converter.xmlToJson([xml dom node]);// -> returns xml as JSON"
+				}
+			]
+		}
+	]
+}

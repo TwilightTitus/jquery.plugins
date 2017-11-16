@@ -1,0 +1,27 @@
+{
+	"type" : "module",
+	"versions": {
+		"release" : "4.0.1"
+	},
+	"dependencies" : "core, logging",
+	"js-file":"https://raw.githubusercontent.com/TwilightTitus/js-lib/master/de.titus.jstl/dist/4.0.1/de.titus.jstl.4.0.1.js",
+	"min-js-file":"https://raw.githubusercontent.com/TwilightTitus/js-lib/master/de.titus.jstl/dist/4.0.1/de.titus.jstl.4.0.1.min.js",
+	"pages": [
+		{
+			"tag":"quick-start",
+			"title": "Quick Start",
+			"teaser": "It's simple to start make pages with JSTL."
+		},
+		{
+			"tag":"reference",
+			"title": "Reference",
+			"teaser": "List of all JSTL Features and how to use there."
+		}
+	],
+	"modules" : {
+		"typeahead" : {
+			"title": "JSTL Typeahead",
+			"teaser":"Simple and customisable Typahead implementation for inputs fields"
+		}
+	}
+}

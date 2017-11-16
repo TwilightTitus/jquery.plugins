@@ -1,0 +1,21 @@
+{
+	"title": "",
+	"text": "",
+	"articles": [
+		{
+			"tag" : "release-notes-3.2.0",
+			"title": "3.2.0 Release Notes",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",
+					"content": [
+						"update <b>core</b> to <b>1.8.9</b>",
+						"",
+						"- fixed some bugs at <i>Expression Resolver</i>"
+					]
+				}
+			]
+		}
+	]
+}

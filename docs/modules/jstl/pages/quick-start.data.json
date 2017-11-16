@@ -1,0 +1,130 @@
+{
+	"text": "",
+	"articles": [
+		{
+			"tag": "dependencies",
+			"title": "Dependencies",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",
+					"content": "The JSTL is build as a jQuery plugin. You must include jQuery and must be completly loaded, befor JSTL are loaded.\nThe best way is to include jQuery at head!"
+				},
+				{
+					"type": "code",
+					"codetype": "html",
+					"content": [
+						"<!DOCTYPE html>",
+						"<html>",
+						"<head>",
+						"<meta charset=\"utf-8\">",
+						"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+						"<script type=\"text\/javascript\" src=\"libs\/jquery-2.1.1.js\"><\/script>",
+						"<script type=\"text\/javascript\" src=\"dist\/2.5.0\/de.titus.jquery.plugins.2.5.0.min.js\"><\/script>",
+						"",
+						"<\/head>",
+						"<body>",
+						"<\/body>",
+						"<\/html>"
+					]
+				},
+				{
+					"type": "text",
+					"content": "You need to use jQuery versions greater then 1.9.0+ (also 2.0.0+ and 3.0.0+)."
+				}
+			]
+		},
+		{
+			"tag": "hello-world",
+			"title": "Hello World",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",
+					"content": "You can use JSTL for render data to html, to load dynamicly static html fracments or both together. Hier is a \"Hello World\" sample."
+				},
+				{
+					"type": "code",
+					"headline": "\"Hello World\" Sample",
+					"codetype": "html",
+					"content": [
+						"<!DOCTYPE html>",
+						"<html>",
+						"<head>",
+						"<base href=\"../../../../\" />",
+						"<meta charset=\"utf-8\"/>",
+						"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>",
+						"<title>Hello World</title>",
+						"<script type=\"text/javascript\" src=\"libs/jquery-2.1.1.js\"></script>",
+						"<script type=\"text/javascript\" src=\"dist/2.5.0/de.titus.jquery.plugins.2.5.0.min.js\"></script>",
+						"</head>",
+						"<body jstl-data=\"{text:'Hello World'}\" jstl-autorun>",
+						"${text}",
+						"</body>",
+						"</html>"
+					]
+				},
+				{
+					"type": "iframe",
+					"headline": "Result of \"Hello World\" Sample",
+					"src": "modules/jstl/samples/HelloWorld.html"
+				},
+				{
+					"type": "text",
+					"headline": "line 10: jstl-data",
+					"content": "With \"jstl-data\" you can define an inline data. At this sample, you define a variable named \"text\" and put the value \"Hello World\" on it. You can define at \"jstl-data\" any data object you want. The syntax is json and starts as an object."
+				},
+				{
+					"type": "button",
+					"text": "reference for \"jstl-data\"",
+					"link": "index.html?module=jstl&page=1#jstl-data",
+					"linktype": "relativ"
+				},
+				{
+					"type": "text",
+					"headline": "line 10: jstl-autorun",
+					"content": "With \"jstl-autorun\" start the JSTL direct after page load. Its simalar to:"
+				},
+				{
+					"type": "code",
+					"codetype": "javascript",
+					"content": [
+						"$(document).ready(function(){",
+						"\t$('[jstl-autorun]').each(function(){",
+						"\t\t$(this).jstl();",
+						"\t});",
+						"});"
+					]
+				},
+				{
+					"type": "button",
+					"text": "reference for \"jstl-autorun\"",
+					"link": "index.html?module=jstl&page=1#jstl-processor",
+					"linktype": "relativ"
+				},
+				{
+					"type": "text",
+					"headline": "line 11: ${text} - Expressions",
+					"content": "At all processing time, you have a data context and with an expression you can get the values from context. At any time you want to access the context, you need an expression. An expression starts normaly with \"${\" and ends with \"}\". The inner content of an expression you can have full access to javascript and the current data context."
+				},
+				{
+					"type": "button",
+					"text": "reference for \"Expressions\"",
+					"link": "index.html?module=jstl&page=1#expression",
+					"linktype": "relativ"
+				}
+			]
+		},
+		{
+			"tag": "best-sample",
+			"title": "Best sample for JSTL",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",
+					"content": "The best sample for \"how to use JSTL\" and to see \"what feature has JSTL\" is look at this documentation app. The documentation fully written with JSTL."
+				}
+			]
+		}
+	]
+}

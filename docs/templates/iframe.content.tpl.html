@@ -1,0 +1,3 @@
+<h3 class="text-primary" jstl-if="${typeof content.headline !== 'undefined' && content.headline.trim().length > 0}" jstl-text-content-type="html">${content.headline}</h3>
+<iframe src="${content.src}" height="${content.height}" width="100%"> </iframe>
+<small><a class="btn btn-info" role="button" href="${content.src}" target="_blank">open as new frame<span class="glyphicon glyphicon-chevron-right"></span></a></small>

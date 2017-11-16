@@ -1,0 +1,28 @@
+{
+	"title": "Summary",
+	"text": "",
+	"articles": [
+		{
+			"title": "What is \"Form\"?",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",
+					"content": ["Client side/ browser side formular engine!"
+					]
+				},
+				{
+					"type": "attention",
+					"content": ["The formular engine is seperated from the jstl and currently not included into \"Titus Lib\" package"
+					]
+				},
+				{
+					"type": "iframe",
+					"headline": "This is a example formular for a user registration",
+					"src": "modules/form/samples/user.reg.sample.html",
+					"height": 1000
+				}
+			]
+		}
+	]
+}

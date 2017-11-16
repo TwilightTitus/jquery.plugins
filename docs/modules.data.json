@@ -1,0 +1,20 @@
+{
+	"modules": {
+		"home": {
+			"title": "Home",
+			"teaser":"Home de.titus.jquery.plugins"
+		},
+		"core": {
+			"title": "Core"
+		},
+		"logging": {
+			"title": "Logging"
+		},
+		"jstl": {
+			"title": "JSTL"
+		},
+		"form": {
+			"title": "Form (beta)"
+		}
+	}
+}

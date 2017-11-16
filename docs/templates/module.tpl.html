@@ -1,0 +1,10 @@
+<div jstl-if="${moduleData.pages != undefined && moduleData.pages.length > pageNumber}">
+	<jstl jstl-data="${moduleData.pages[pageNumber]}" jstl-data-var="page"></jstl>
+	<jstl jstl-data="modules/${moduleId}/pages/${page.tag}.data.json" jstl-data-mode="remote" jstl-data-var="pageData"></jstl>
+	<jstl jstl-include="templates/site-pager.tpl.html"></jstl>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" jstl-include="templates/page.tpl.html"></div>
+		<nav class="col-md-3 col-lg-3" jstl-include="templates/sidenav.tpl.html"></nav>
+	</div>
+	<jstl jstl-include="templates/site-pager.tpl.html"></jstl>
+</div>

@@ -1,0 +1,16 @@
+{
+	"type" : "module",
+	"versions": {
+		"release" : "1.0.0"
+	},
+	"dependencies" : "",
+	"js-file":"https://raw.githubusercontent.com/TwilightTitus/js-lib/master/de.titus.jstl-typeahead/dist/1.0.1/de.titus.jstl-typeahead-1.0.1.js",
+	"min-js-file":"https://raw.githubusercontent.com/TwilightTitus/js-lib/master/de.titus.jstl-typeahead/dist/1.0.1/de.titus.jstl-typeahead-1.0.1.min.js",
+	"pages": [
+		{
+		"tag":"summary",
+		"title": "JSTL Typeahead module",
+		"teaser": ""
+		}
+	]
+}

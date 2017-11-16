@@ -1,0 +1,3 @@
+<h3 class="text-primary" jstl-if="${typeof content.headline !== 'undefined' && content.headline.trim().length > 0}" jstl-text-content-type="html">${content.headline}</h3>
+<p jstl-if="${typeof content.content === 'string'}" jstl-text-content-type="html">${content.content}</p>
+<p jstl-if="${typeof content.content !== 'string'}" jstl-foreach="${content.content}" jstl-foreach-var="text"><span jstl-text-content-type="html">${text}<span><br></p>

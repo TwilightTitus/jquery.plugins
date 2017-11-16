@@ -1,0 +1,16 @@
+{
+	"type" : "module",
+	"versions": {
+		"release" : "2.1.0"
+	},
+	"dependencies" : "core",
+	"js-file":"https://raw.githubusercontent.com/TwilightTitus/js-lib/master/de.titus.logging/dist/2.1.0/de.titus.logging.2.1.0.js",
+	"min-js-file":"https://raw.githubusercontent.com/TwilightTitus/js-lib/master/de.titus.logging/dist/2.1.0/de.titus.logging.2.1.0.min.js",
+	"pages": [
+		{
+		"tag": "summary",
+		"title": "Introduction",
+		"teaser": ""
+		}
+	]
+}

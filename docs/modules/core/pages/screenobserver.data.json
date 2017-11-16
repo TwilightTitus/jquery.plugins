@@ -1,0 +1,64 @@
+{
+	"text": "",
+	"articles": [
+		{
+			"tag": "screenobserver",
+			"title": "Screen Observer",
+			"teaser": "",
+			"content": [
+				{
+					"type": "text",					
+					"content": [
+						"This provide the ability to run function at a screen size condition.",
+						"",
+						"Example: You have two completly different html layouts to display data on smart phones and other devices.",
+						"You have the choice to render the both different html layouts and manage the visibility by css media queries or you write a huge bunch of code to manage your html depends on initial screen size and screen resizing.",
+						"",
+						"The screen observer give you the ability to run a function depends on screen. You write a simple condition and your render function. The screen observer managed the execution of your functions."
+						]
+				},
+				{
+					"type": "code",
+					"codetype": "javascript",
+					"headline" : "simple code example",
+					"content": [
+						"let handler = {",
+						"\"condition\":\"landscape\",",
+						"\"activate\" : function(screen){alert(\"Screen is at landscape mode!\");},",
+						"\"deactivate\" : function(screen){alert(\"Screen is at protrait mode!\");},",
+						"}",
+						"de.titus.core.ScreenObserver.addHandler(handler);"
+						]
+				},
+				{
+					"type": "code",
+					"codetype": "javascript",
+					"headline" : "signature of handler function ",
+					"content": [
+						"/*all function get the screen data object*/",
+						"let handler = {",
+						"\"condition\":\"condition string based on screen data object and javascript evaluated to a boolean\",",
+						"/*this function would be called if the the condition returns true*/",
+						"\"activate\" : function(screen){/*your code*/},",
+						"/*this function would be called if the the condition returns false and the function was active before*/",
+						"\"deactivate\" : function(screen){/*your code*/},",
+						"}"						
+						]
+				},{
+					"type": "code",
+					"codetype": "javascript",
+					"headline" : "screen data object",
+					"content": [
+						"{",
+						"\"width\":768,", 
+						"\"height\": 600,", 
+						"\"pixelRatio\": 1,", 
+						"\"landscape\": true,", 
+						"\"portrait\": false", 
+						"}"					
+						]
+				}
+			]
+		}
+	]
+}

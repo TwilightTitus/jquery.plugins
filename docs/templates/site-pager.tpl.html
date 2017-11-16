@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="col-sm-9">
+		<ul class="pager">
+			<li class="previous">
+				<a href="index.html?module=${moduleId}&page=${pageNumber - 1}" jstl-if="${pageNumber > 0}">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+					back
+				</a>
+			</li>
+			<!-- span class="label label-warning">${page.title}</span-->
+			<li class="next">
+				<a href="index.html?module=${moduleId}&page=${pageNumber + 1}" jstl-if="${moduleData.pages.length > (pageNumber + 1)}">
+					next
+					<span class="glyphicon glyphicon-arrow-right"></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,36 @@
+{
+	"type" : "module",
+	"versions": {
+		"release" : "1.10.1"
+	},
+	"dependencies" : "",
+	"js-file":"https://raw.githubusercontent.com/TwilightTitus/js-lib/master/de.titus.core/dist/1.10.1/de.titus.core.1.10.1.js",
+	"min-js-file":"https://raw.githubusercontent.com/TwilightTitus/js-lib/master/de.titus.core/dist/1.10.1/de.titus.core.1.10.1.min.js",
+	"pages": [
+		{
+		"tag":"summary",
+		"title": "summary",
+		"teaser": ""
+		},
+		{
+		"tag":"expression-resolver",		
+		"title": "Reference: Expression Resolver",
+		"teaser": "Evaluate expressions to get data."
+		},
+		{
+		"tag":"eventbind",
+		"title": "Reference: Event Binding",
+		"teaser": "Decleratives event binding for JQuery events"
+		},
+		{
+		"tag":"converter",
+		"title": "Reference: Data Converter",
+		"teaser": "A function lib to convert data. xml -> json"
+		},
+		{
+		"tag":"screenobserver",
+		"title": "Reference: Screen Observer",
+		"teaser": "This provide functionality run function by screen size conditions"
+		}
+	]
+}
